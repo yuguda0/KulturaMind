@@ -27,11 +27,15 @@ fi
 
 # Create virtual environment
 echo "Creating virtual environment..."
-mkvirtualenv --python=/usr/bin/python3.10 kulturamind
+python3.10 -m venv ~/.virtualenvs/kulturamind
+
+# Activate virtual environment
+source ~/.virtualenvs/kulturamind/bin/activate
 
 # Install dependencies
 echo "Installing dependencies..."
 cd ~/KulturaMind/backend
+pip install --upgrade pip
 pip install -r requirements.txt
 
 # Create .env file if it doesn't exist

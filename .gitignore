@@ -100,3 +100,4 @@ qdrant_storage/
 secrets.json
 config.local.json
 
+.vercel
