@@ -1,91 +1,119 @@
-# 🎨 KulturaMind - Interactive Cultural Heritage Platform
+# KulturaMind - Interactive Cultural Heritage Platform
 
-> A beautifully redesigned, modern web application for exploring African cultural artifacts with AI-powered storytelling.
+A modern web application for exploring African cultural artifacts with AI-powered storytelling and semantic search capabilities. KulturaMind combines a production-grade AI stack with an intuitive user interface to provide intelligent access to verified cultural heritage information.
 
-## ✨ Latest Updates (v2.1)
+## Overview
 
-**Status**: ✅ **PRODUCTION READY**
+KulturaMind is an intelligent cultural heritage platform that leverages advanced AI technologies to provide semantic search, knowledge graph reasoning, and context-aware responses about African cultures. The platform covers diverse African cultures across the continent including West African cultures (Yoruba, Igbo, Hausa, Edo, Fulani, Ijaw, Kanuri, Tiv, Efik, Ibibio, Akan), East African cultures (Maasai, Amhara), Southern African cultures (Zulu, Xhosa), and North African cultures (Berber). Each culture includes verified data on festivals, art forms, traditions, languages, and proverbs.
 
-### Recent Changes
-- ✅ Complete UI redesign with modern dark mode
-- ✅ Fixed all bugs (map color switching, artifact display)
-- ✅ Added 3D mind map visualization
-- ✅ Added "Click to explore" guidance
-- ✅ Removed UI clutter
-- ✅ Enhanced empty state with interactive elements
+### Status
 
-### Key Features
-- 🌙 Complete dark mode support
-- 📖 Story-focused interface
-- 🔗 3D mind map visualization
-- 🗺️ Interactive artifact map
-- 💬 AI Heritage Keeper chat
-- ✨ Professional design
-- 📱 Fully responsive
+Production-ready MVP with full frontend-backend integration, real AI stack implementation, and comprehensive cultural knowledge base.
 
-## Project Overview
+### Key Capabilities
 
-**Goal:** Build a working MVP for the BGI25 Hackathon that demonstrates:
-- Real MeTTa knowledge graph with cultural predicates
-- Fetch.ai agent with RAG (Retrieval-Augmented Generation)
-- Beautiful, modern web interface
-- Verified cultural data from UNESCO and archives
-
-**Focus:** 3 Nigerian cultures (Yoruba, Igbo, Hausa) with 19+ cultural items
+- Semantic search with ASI:One embeddings
+- Knowledge graph reasoning with MeTTa
+- Intelligent response generation with ASI:One LLM
+- Interactive artifact exploration with Mapbox integration
+- Real-time chat interface with Heritage Keeper agent
+- Web enrichment for cultural data
+- Responsive dark mode interface
 
 ## Project Structure
 
 ```
 KulturaMind/
 ├── backend/
-│   ├── cultural_data.json          # Knowledge base with cultural items
-│   ├── cultural_knowledge_base.metta # MeTTa predicates (reference)
-│   ├── metta_kb.py                 # Knowledge base manager
-│   ├── agent.py                    # Fetch.ai agent implementation
-│   ├── api.py                      # FastAPI backend
+│   ├── api.py                      # FastAPI REST API server
+│   ├── agent.py                    # Fetch.ai uAgent implementation
+│   ├── rag_pipeline.py             # RAG pipeline orchestration
+│   ├── llm_engine.py               # ASI:One LLM integration
+│   ├── metta_reasoning.py          # MeTTa knowledge graph reasoning
+│   ├── vector_db.py                # Qdrant vector database client
+│   ├── web_agent.py                # Web enrichment agent
+│   ├── cultural_data.json          # Cultural knowledge base
+│   ├── cultural_knowledge_base.metta # MeTTa predicates reference
 │   ├── requirements.txt            # Python dependencies
-│   └── test_metta.py              # MeTTa tests
+│   └── wsgi.py                     # WSGI configuration
 ├── frontend/
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   └── App.tsx
-│   └── package.json
-├── venv/                           # Python virtual environment
-├── Tools.md                        # ASI Stack documentation
+│   │   ├── components/             # React components
+│   │   ├── pages/                  # Page components
+│   │   ├── services/               # API client services
+│   │   └── App.tsx                 # Main application
+│   ├── package.json                # Node dependencies
+│   ├── vite.config.ts              # Vite configuration
+│   └── tailwind.config.ts          # Tailwind CSS configuration
 └── README.md                       # This file
 ```
 
-## 📚 Documentation
+## Technology Stack
 
-### Quick Start
-- **[START_HERE.md](./START_HERE.md)** - Quick start guide
-- **[FINAL_STATUS.md](./FINAL_STATUS.md)** - Current project status
-- **[LATEST_UPDATES.md](./LATEST_UPDATES.md)** - Recent changes & new features
+### Backend
+- **FastAPI**: REST API framework with async support
+- **ASI:One**: LLM for intelligent response generation
+- **MeTTa**: Knowledge graph and reasoning engine
+- **Qdrant**: Vector database for semantic search
+- **Fetch.ai uAgents**: Agent framework for autonomous operations
+- **Pydantic**: Data validation and serialization
 
-### Detailed Guides
-- **[REDESIGN_README.md](./REDESIGN_README.md)** - Complete overview
-- **[REDESIGN_FEATURES.md](./REDESIGN_FEATURES.md)** - Feature documentation
-- **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - Quick reference
+### Frontend
+- **React 18**: UI framework
+- **TypeScript**: Type-safe development
+- **Vite**: Build tool and dev server
+- **Tailwind CSS**: Utility-first CSS framework
+- **Mapbox GL**: Interactive map visualization
+- **Radix UI**: Accessible component library
+- **React Query**: Server state management
 
-### Technical
-- **[REDESIGN_IMPLEMENTATION_GUIDE.md](./REDESIGN_IMPLEMENTATION_GUIDE.md)** - Technical details
-- **[CHANGES_MADE.md](./CHANGES_MADE.md)** - All code changes
-- **[BUG_FIX_REPORT.md](./BUG_FIX_REPORT.md)** - Bug fixes
+## Getting Started
 
-### Deployment
-- **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)** - Production deployment
-- **[VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md)** - QA report
+### Prerequisites
 
----
+- Python 3.9+
+- Node.js 18+
+- npm or yarn package manager
 
-## 🚀 Quick Start (Integrated)
+### Backend Setup
 
-### One-Command Startup
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Configure environment variables in `.env`:
+```
+ASI_ONE_API_KEY=your_api_key
+ASI_ONE_BASE_URL=https://api.asi.one
+QDRANT_URL=http://localhost:6333
+```
+
+Start the backend server:
+```bash
+python api.py
+```
+
+The API will be available at `http://localhost:8000`
+
+### Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend will be available at `http://localhost:5173`
+
+### Running Both Services
+
+Use the provided startup scripts:
 
 **Linux/Mac:**
 ```bash
-chmod +x start-dev.sh
 ./start-dev.sh
 ```
 
@@ -94,201 +122,158 @@ chmod +x start-dev.sh
 start-dev.bat
 ```
 
-This will start both backend and frontend automatically!
-
----
-
-## Setup Instructions
-
-### 1. Backend Setup
-
-```bash
-# Create and activate virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install -r backend/requirements.txt
-
-# Test MeTTa installation
-python backend/test_metta.py
-
-# Test knowledge base
-python backend/metta_kb.py
-```
-
-### 2. Knowledge Base
-
-The knowledge base contains:
-- **3 Cultures:** Yoruba, Igbo, Hausa
-- **4 Festivals:** Sango, Osun-Osogbo, Iri-Ji, Durbar
-- **5 Art Forms:** Adire, Beadwork, Mbari, Uli, Hausa Textiles
-- **4 Traditions:** Masquerades, Naming Ceremonies, Bride Price
-- **3 Languages:** Yoruba, Igbo, Hausa
-- **4 Proverbs:** Traditional wisdom sayings
-
-### 3. Fetch.ai Agentverse Setup
-
-1. Create account at https://agentverse.ai/
-2. Create a new agent in the dashboard
-3. Configure agent with RAG integration
-4. Deploy to Agentverse
-
-### 4. Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-## Technology Stack
-
-- **MeTTa:** Knowledge graph and reasoning
-- **Fetch.ai Agentverse:** Agent hosting and deployment
-- **FastAPI:** Backend API
-- **React + Vite:** Frontend
-- **Pydantic:** Data validation
-
 ## API Endpoints
 
-### Knowledge Base Queries
+### Cultural Data Queries
 
-```
-GET /api/cultures              # Get all cultures
-GET /api/cultures/{id}         # Get culture details
-GET /api/festivals?culture=    # Get festivals by culture
-GET /api/art-forms?culture=    # Get art forms by culture
-GET /api/traditions?culture=   # Get traditions by culture
-GET /api/search?q=             # Search by keyword
-```
+- `GET /api/cultures` - List all cultures
+- `GET /api/cultures/{id}` - Get culture details
+- `GET /api/festivals?culture=` - Get festivals by culture
+- `GET /api/art-forms?culture=` - Get art forms by culture
+- `GET /api/traditions?culture=` - Get traditions by culture
+- `GET /api/search?q=` - Semantic search across knowledge base
 
 ### Chat Interface
 
-```
-POST /api/chat                 # Send message to agent
-GET /api/chat/history          # Get chat history
-```
+- `POST /api/chat` - Send message to Heritage Keeper agent
+- `GET /api/chat/history` - Retrieve chat history
+- `POST /api/chat/stream` - Stream responses in real-time
 
-## Running the Application
+## Knowledge Base
 
-### Terminal 1: Backend API
+The platform includes comprehensive verified cultural data for 16+ African cultures:
+
+**West African Cultures**: Yoruba, Igbo, Hausa, Edo, Fulani, Ijaw, Kanuri, Tiv, Efik, Ibibio, Akan
+
+**East African Cultures**: Maasai, Amhara
+
+**Southern African Cultures**: Zulu, Xhosa
+
+**North African Cultures**: Berber
+
+**Content Categories** (for each culture):
+- Festivals and celebrations
+- Art forms and crafts
+- Traditions and customs
+- Languages and communication
+- Proverbs and wisdom
+
+**Data Coverage**: 50+ festivals, 30+ art forms, 40+ traditions, 16+ languages, 40+ proverbs
+
+**Data Sources**: UNESCO archives, cultural institutions, verified heritage databases, academic research
+
+## Architecture
+
+### RAG Pipeline
+
+The Retrieval-Augmented Generation pipeline combines:
+
+1. **Vector Search**: Semantic retrieval using ASI:One embeddings (top_k=10 for comprehensive context)
+2. **Semantic Filtering**: LLM-based relevance filtering
+3. **Knowledge Graph Reasoning**: MeTTa inference for relationship discovery
+4. **Web Enrichment**: Mandatory Wikipedia and web source integration for enriched responses
+5. **Response Generation**: ASI:One LLM generates contextual responses (max_tokens=800 for detailed answers)
+
+**Response Quality Improvements**:
+- Increased context window (top_k=10) for more comprehensive information retrieval
+- Mandatory web enrichment ensures responses are grounded in verified sources
+- Enhanced system prompt ensures informative responses without "I don't know" fallbacks
+- Larger token budget (800 tokens) enables detailed, nuanced explanations
+
+### Agent Architecture
+
+The Fetch.ai uAgent provides:
+- Autonomous query processing
+- Distributed reasoning capabilities
+- Integration with external data sources
+- Scalable multi-agent coordination
+
+## Development
+
+### Running Tests
+
 ```bash
-source venv/bin/activate
-python backend/api.py
-```
-
-### Terminal 2: Frontend
-```bash
-cd frontend
-npm run dev
-```
-
-Visit http://localhost:5173 to access the chat interface.
-
-## Development Roadmap
-
-- [x] Phase 1: Environment Setup & Data Collection
-  - [x] MeTTa environment setup
-  - [x] Knowledge base schema design
-  - [x] Cultural data collection
-- [ ] Phase 2: Knowledge Graph Implementation
-  - [ ] MeTTa predicates implementation
-  - [ ] RAG integration
-- [ ] Phase 3: Fetch.ai Agent Development
-  - [ ] Agent creation in Agentverse
-  - [ ] Agent-backend integration
-- [ ] Phase 4: Frontend & Integration
-  - [ ] React chat UI
-  - [ ] End-to-end integration
-- [ ] Phase 5: Testing & Demo Preparation
-  - [ ] Unit tests
-  - [ ] Integration tests
-  - [ ] Demo preparation
-
-## Key Features
-
-1. **Verified Cultural Data:** All information sourced from UNESCO and cultural archives
-2. **Real MeTTa Integration:** Actual knowledge graph, not mocks
-3. **RAG-Powered Responses:** Responses grounded in knowledge base
-4. **Multi-Culture Support:** Yoruba, Igbo, Hausa cultures
-5. **Interactive Chat:** User-friendly web interface
-
-## Testing
-
-```bash
-# Test MeTTa
-python backend/test_metta.py
-
-# Test knowledge base
-python backend/metta_kb.py
-
-# Run pytest
-pytest backend/
-```
-
-## 🔗 Frontend-Backend Integration
-
-The application now features **full frontend-backend integration**:
-
-### Architecture
-- **Frontend**: React + TypeScript + Vite (Interactive UI with Mapbox)
-- **Backend**: FastAPI + Python (Real AI Stack with ASI:One + MeTTa)
-- **Communication**: REST API with proper error handling
-
-### Key Features
-✅ Real-time API communication
-✅ Semantic search with ASI:One embeddings
-✅ Knowledge graph reasoning with MeTTa
-✅ Intelligent response generation
-✅ Error handling and connection status
-✅ Environment-based configuration
-
-### Running the Integrated App
-
-**Automatic (Recommended):**
-```bash
-# Linux/Mac
-./start-dev.sh
-
-# Windows
-start-dev.bat
-```
-
-**Manual:**
-```bash
-# Terminal 1 - Backend
+# Backend tests
 cd backend
-source venv/bin/activate
-python api.py
+pytest
 
-# Terminal 2 - Frontend
-cd frontend
-npm run dev
+# Specific test file
+pytest test_asi_one_stack.py
 ```
 
-### API Endpoints
-- `GET /health` - Health check
-- `GET /api/info` - System information
-- `POST /api/search` - Semantic search
-- `POST /api/query` - Intelligent query with RAG
+### Code Quality
 
-### Documentation
-- **Integration Guide**: See `FRONTEND_BACKEND_INTEGRATION.md`
-- **Testing Guide**: See `TESTING_GUIDE.md`
+```bash
+# Linting (frontend)
+cd frontend
+npm run lint
 
-## References
+# Type checking
+npm run build
+```
 
-- MeTTa: https://metta-lang.dev/
-- Fetch.ai Agentverse: https://docs.agentverse.ai/home
-- ASI Alliance: https://docs.asi1.ai/
-- BGI25 Hackathon: https://bgihackathon.com/
+## Deployment
 
-## Team
+### Backend Deployment
 
-Built for BGI25 Hackathon - Connecting the Dots: ASI + Agentverse
+The backend is configured for deployment on PythonAnywhere:
+
+```bash
+cd backend
+bash pythonanywhere_setup.sh
+```
+
+### Frontend Deployment
+
+Deploy to Vercel:
+
+```bash
+cd frontend
+npm run build
+vercel deploy
+```
+
+## Configuration
+
+### Environment Variables
+
+**Backend (.env)**:
+- `ASI_ONE_API_KEY`: API key for ASI:One LLM
+- `ASI_ONE_BASE_URL`: Base URL for ASI:One API
+- `QDRANT_URL`: Qdrant vector database URL
+- `QDRANT_API_KEY`: Qdrant API key (if required)
+
+**Frontend (.env.local)**:
+- `VITE_API_URL`: Backend API base URL
+- `VITE_MAPBOX_TOKEN`: Mapbox GL access token
+
+## Performance Optimization
+
+- Semantic search with vector embeddings for fast retrieval
+- Response caching for frequently asked queries
+- Streaming responses for real-time chat
+- Lazy loading of cultural artifacts
+- CDN delivery for static assets
+
+## Security
+
+- CORS middleware for cross-origin requests
+- Input validation with Pydantic
+- Environment-based configuration management
+- Secure API key handling
+- Rate limiting on API endpoints
+
+## Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Run tests and linting
+4. Submit a pull request
 
 ## License
 
-MIT
+This project is part of the BGI25 Hackathon initiative.
 
+## Support
+
+For issues, questions, or contributions, please open an issue on the repository.

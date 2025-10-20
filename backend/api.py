@@ -153,9 +153,14 @@ async def get_info():
     """Get system information"""
     if not rag_pipeline:
         raise HTTPException(status_code=503, detail="RAG Pipeline not initialized")
-    
+
     try:
         num_docs = len(rag_pipeline.vector_db.embeddings_store)
+
+        # Get unique cultures from artifacts
+        artifacts = artifacts_data.get("artifacts", [])
+        unique_cultures = set(a.get("culture", "") for a in artifacts if a.get("culture"))
+
         return {
             "system": "KulturaMind Real AGI Stack",
             "version": "1.0.0",
@@ -166,7 +171,9 @@ async def get_info():
             },
             "data": {
                 "total_items": num_docs,
-                "cultures": ["Yoruba", "Igbo", "Hausa"],
+                "artifact_count": len(artifacts),
+                "culture_count": len(unique_cultures),
+                "cultures": sorted(list(unique_cultures)),
                 "categories": ["Festivals", "Art Forms", "Traditions", "Languages", "Proverbs"]
             }
         }
@@ -315,13 +322,14 @@ async def intelligent_query(request: QueryRequest):
             "artifact_count": len(enriched_context)
         }
 
-        # Query RAG pipeline with enhanced context
+        # Query RAG pipeline with enhanced context (increased top_k for comprehensive results)
         result = rag_pipeline.query(
             request.message,
-            top_k=5,
+            top_k=10,
             use_reasoning=request.use_reasoning,
             use_llm=request.use_llm,
-            additional_context=enhanced_context
+            additional_context=enhanced_context,
+            enforce_web_enrichment=True
         )
 
         logger.info(f"Query processed with {len(enriched_context)} enriched artifacts: {request.message}")
@@ -386,13 +394,14 @@ async def generate_streaming_response(message: str, use_reasoning: bool, use_llm
             "artifact_count": len(enriched_context)
         }
 
-        # Get the full response with enhanced context
+        # Get the full response with enhanced context (increased top_k for comprehensive results)
         result = rag_pipeline.query(
             message,
-            top_k=5,
+            top_k=10,
             use_reasoning=use_reasoning,
             use_llm=use_llm,
-            additional_context=enhanced_context
+            additional_context=enhanced_context,
+            enforce_web_enrichment=True
         )
 
         response_text = result.get("response", "")

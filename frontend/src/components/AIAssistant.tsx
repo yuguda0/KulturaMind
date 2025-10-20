@@ -112,22 +112,22 @@ const AIAssistant = ({
   return (
     <div className="flex flex-col h-full bg-background overflow-hidden border-l border-border">
       {/* Header - Minimal */}
-      <div className="px-6 py-4 border-b border-border/50">
+      <div className="px-3 sm:px-6 py-3 sm:py-4 border-b border-border/50">
         <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-accent" />
-          <h3 className="font-semibold text-foreground text-sm">Heritage Keeper</h3>
+          <Sparkles className="w-4 h-4 text-accent flex-shrink-0" />
+          <h3 className="font-semibold text-foreground text-xs sm:text-sm truncate">Heritage Keeper</h3>
         </div>
       </div>
 
       {/* Messages Area */}
       {messages.length === 0 ? (
-        <div className="flex-1 flex flex-col items-center justify-center text-center py-12 space-y-6 px-6 overflow-y-auto">
+        <div className="flex-1 flex flex-col items-center justify-center text-center py-8 sm:py-12 space-y-4 sm:space-y-6 px-3 sm:px-6 overflow-y-auto">
           {/* Suggestion Prompt */}
-          <div className="space-y-3 flex-shrink-0">
-            <div className="mb-4 p-3 rounded-full bg-accent/10 inline-block">
-              <Sparkles className="w-6 h-6 text-accent" />
+          <div className="space-y-2 sm:space-y-3 flex-shrink-0">
+            <div className="mb-3 sm:mb-4 p-2 sm:p-3 rounded-full bg-accent/10 inline-block">
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               Explore the story of this artifact
             </p>
             <p className="text-xs text-muted-foreground/70">
@@ -136,7 +136,7 @@ const AIAssistant = ({
           </div>
 
           {/* Story Suggestions */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 w-full">
             <StorySuggestions
               suggestions={suggestions}
               onSuggestionClick={handleSuggestionClick}
@@ -144,8 +144,8 @@ const AIAssistant = ({
           </div>
         </div>
       ) : (
-        <ScrollArea className="flex-1 p-6" ref={scrollRef}>
-          <div className="space-y-4">
+        <ScrollArea className="flex-1 p-3 sm:p-6" ref={scrollRef}>
+          <div className="space-y-3 sm:space-y-4">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -154,37 +154,37 @@ const AIAssistant = ({
                 } animate-slide-up`}
               >
                 <div
-                  className={`max-w-xs lg:max-w-md px-4 py-3 rounded-lg ${
+                  className={`max-w-xs sm:max-w-sm md:max-w-md px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-xs sm:text-sm ${
                     message.role === 'user'
                       ? 'bg-accent text-accent-foreground rounded-br-none'
                       : 'bg-card/50 border border-border/50 text-foreground rounded-bl-none'
                   }`}
                 >
                   {message.role === 'assistant' ? (
-                    <div className="text-sm leading-relaxed prose prose-invert max-w-none">
+                    <div className="leading-relaxed prose prose-invert max-w-none">
                       <ReactMarkdown
                         components={{
-                          p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                          p: ({ children }) => <p className="mb-1 sm:mb-2 last:mb-0">{children}</p>,
                           strong: ({ children }) => <strong className="font-bold">{children}</strong>,
                           em: ({ children }) => <em className="italic">{children}</em>,
-                          ul: ({ children }) => <ul className="list-disc list-inside mb-2">{children}</ul>,
-                          ol: ({ children }) => <ol className="list-decimal list-inside mb-2">{children}</ol>,
-                          li: ({ children }) => <li className="mb-1">{children}</li>,
+                          ul: ({ children }) => <ul className="list-disc list-inside mb-1 sm:mb-2">{children}</ul>,
+                          ol: ({ children }) => <ol className="list-decimal list-inside mb-1 sm:mb-2">{children}</ol>,
+                          li: ({ children }) => <li className="mb-0.5 sm:mb-1">{children}</li>,
                           code: ({ children }) => (
                             <code className="bg-background/50 px-1 py-0.5 rounded text-xs font-mono">
                               {children}
                             </code>
                           ),
-                          h1: ({ children }) => <h1 className="text-lg font-bold mb-2">{children}</h1>,
-                          h2: ({ children }) => <h2 className="text-base font-bold mb-2">{children}</h2>,
-                          h3: ({ children }) => <h3 className="text-sm font-bold mb-1">{children}</h3>,
+                          h1: ({ children }) => <h1 className="text-base sm:text-lg font-bold mb-1 sm:mb-2">{children}</h1>,
+                          h2: ({ children }) => <h2 className="text-sm sm:text-base font-bold mb-1 sm:mb-2">{children}</h2>,
+                          h3: ({ children }) => <h3 className="text-xs sm:text-sm font-bold mb-0.5 sm:mb-1">{children}</h3>,
                         }}
                       >
                         {message.content}
                       </ReactMarkdown>
                     </div>
                   ) : (
-                    <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                    <p className="leading-relaxed whitespace-pre-wrap">
                       {message.content}
                     </p>
                   )}
@@ -195,7 +195,7 @@ const AIAssistant = ({
             {/* Typing Indicator */}
             {isTyping && (
               <div className="flex justify-start animate-slide-up">
-                <div className="bg-card/50 border border-border/50 px-4 py-3 rounded-lg rounded-bl-none">
+                <div className="bg-card/50 border border-border/50 px-3 sm:px-4 py-2 sm:py-3 rounded-lg rounded-bl-none">
                   <div className="flex items-center gap-2">
                     <div className="typing-indicator flex gap-1">
                       <span className="w-2 h-2 bg-accent rounded-full"></span>
@@ -210,7 +210,7 @@ const AIAssistant = ({
             {/* Error Message */}
             {error && (
               <div className="flex justify-center">
-                <div className="bg-destructive/10 border border-destructive/30 text-destructive px-4 py-2 rounded-lg text-sm">
+                <div className="bg-destructive/10 border border-destructive/30 text-destructive px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm">
                   {error}
                 </div>
               </div>
@@ -220,11 +220,11 @@ const AIAssistant = ({
       )}
 
       {/* Input Area */}
-      <div className="border-t border-border/50 bg-background p-6 space-y-3">
+      <div className="border-t border-border/50 bg-background p-3 sm:p-6 space-y-2 sm:space-y-3">
         {!isConnected && (
-          <div className="bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 px-3 py-2 rounded-lg text-sm flex items-center gap-2">
-            <Zap className="w-4 h-4" />
-            Backend API is not available. Please ensure the backend is running.
+          <div className="bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm flex items-center gap-2">
+            <Zap className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+            <span className="truncate">Backend API is not available.</span>
           </div>
         )}
 
@@ -235,12 +235,12 @@ const AIAssistant = ({
             onChange={(e) => onInputChange(e.target.value)}
             onKeyPress={handleKeyPress}
             disabled={!isConnected || isTyping}
-            className="flex-1 rounded-lg border-border/50 bg-card/50 focus:ring-accent"
+            className="flex-1 rounded-lg border-border/50 bg-card/50 focus:ring-accent text-xs sm:text-sm"
           />
           <Button
             onClick={onSendMessage}
             disabled={!isConnected || isTyping || !inputMessage.trim()}
-            className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-lg"
+            className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-lg flex-shrink-0 h-9 sm:h-10 w-9 sm:w-10"
             size="icon"
           >
             <Send className="w-4 h-4" />

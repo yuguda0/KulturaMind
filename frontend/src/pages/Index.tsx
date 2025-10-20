@@ -23,7 +23,7 @@ const Index = () => {
   };
 
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-background">
+    <main className="relative w-full h-screen overflow-hidden bg-background pt-14 sm:pt-16">
       <Header />
       <MapView onArtifactClick={handleArtifactClick} />
       {/* <TimelineView /> */}

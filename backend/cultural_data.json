@@ -3,23 +3,114 @@
     {
       "id": "yoruba",
       "name": "Yoruba",
-      "region": "Southwest Nigeria",
-      "country": "Nigeria",
-      "description": "The Yoruba people are one of the largest ethnic groups in West Africa, known for their rich artistic traditions, complex social structures, and spiritual practices."
+      "region": "West Africa",
+      "countries": ["Nigeria", "Benin", "Togo"],
+      "description": "The Yoruba people are one of the largest ethnic groups in West Africa, known for their rich artistic traditions, complex social structures, and spiritual practices. They have influenced African diaspora cultures worldwide."
     },
     {
       "id": "igbo",
       "name": "Igbo",
-      "region": "Southeast Nigeria",
-      "country": "Nigeria",
+      "region": "West Africa",
+      "countries": ["Nigeria"],
       "description": "The Igbo people are known for their democratic governance, artistic excellence, and strong community bonds. They have a rich tradition of masquerades and visual arts."
     },
     {
       "id": "hausa",
       "name": "Hausa",
-      "region": "Northern Nigeria",
-      "country": "Nigeria",
+      "region": "West Africa",
+      "countries": ["Nigeria", "Niger"],
       "description": "The Hausa people are known for their trade networks, Islamic traditions, and distinctive textile and leather crafts."
+    },
+    {
+      "id": "edo",
+      "name": "Edo",
+      "region": "West Africa",
+      "countries": ["Nigeria"],
+      "description": "The Edo people of Nigeria are renowned for their sophisticated bronze casting, royal traditions, and the historic Kingdom of Benin. Their artistic heritage is recognized globally."
+    },
+    {
+      "id": "fulani",
+      "name": "Fulani",
+      "region": "West Africa",
+      "countries": ["Nigeria", "Niger", "Mali", "Senegal", "Cameroon"],
+      "description": "The Fulani are a pastoral people spread across West Africa, known for their distinctive culture, Islamic traditions, and nomadic heritage. They are skilled herders and traders."
+    },
+    {
+      "id": "ijaw",
+      "name": "Ijaw",
+      "region": "West Africa",
+      "countries": ["Nigeria"],
+      "description": "The Ijaw people of the Niger Delta are known for their maritime traditions, water-based settlements, and rich oral literature. They have a unique relationship with water and nature."
+    },
+    {
+      "id": "kanuri",
+      "name": "Kanuri",
+      "region": "West Africa",
+      "countries": ["Nigeria", "Niger", "Chad"],
+      "description": "The Kanuri people are known for their Islamic scholarship, trade networks, and the historic Kanem-Bornu Empire. They have a rich literary and intellectual tradition."
+    },
+    {
+      "id": "tiv",
+      "name": "Tiv",
+      "region": "West Africa",
+      "countries": ["Nigeria"],
+      "description": "The Tiv people are known for their agricultural traditions, intricate beadwork, and distinctive cultural practices. They have a strong communal social structure."
+    },
+    {
+      "id": "efik",
+      "name": "Efik",
+      "region": "West Africa",
+      "countries": ["Nigeria"],
+      "description": "The Efik people of southeastern Nigeria are known for their maritime heritage, trade traditions, and the historic Calabar port. They have influenced regional commerce and culture."
+    },
+    {
+      "id": "ibibio",
+      "name": "Ibibio",
+      "region": "West Africa",
+      "countries": ["Nigeria"],
+      "description": "The Ibibio people are known for their artistic traditions, masquerade performances, and agricultural practices. They share cultural similarities with neighboring groups."
+    },
+    {
+      "id": "zulu",
+      "name": "Zulu",
+      "region": "Southern Africa",
+      "countries": ["South Africa"],
+      "description": "The Zulu people of South Africa are known for their warrior traditions, distinctive beadwork, and rich oral history. They have played a significant role in South African history."
+    },
+    {
+      "id": "xhosa",
+      "name": "Xhosa",
+      "region": "Southern Africa",
+      "countries": ["South Africa"],
+      "description": "The Xhosa people are known for their click consonants in language, pastoral traditions, and artistic heritage. They have a rich cultural and political history."
+    },
+    {
+      "id": "maasai",
+      "name": "Maasai",
+      "region": "East Africa",
+      "countries": ["Kenya", "Tanzania"],
+      "description": "The Maasai are a pastoral people known for their distinctive red clothing, warrior traditions, and cattle herding practices. They maintain strong cultural traditions in modern times."
+    },
+    {
+      "id": "amhara",
+      "name": "Amhara",
+      "region": "East Africa",
+      "countries": ["Ethiopia"],
+      "description": "The Amhara people are known for their ancient Christian traditions, literary heritage, and historical significance in Ethiopian civilization. They speak Amharic, a major African language."
+    },
+    {
+      "id": "akan",
+      "name": "Akan",
+      "region": "West Africa",
+      "countries": ["Ghana", "Ivory Coast"],
+      "description": "The Akan people are known for their kente cloth, gold working traditions, and matrilineal social structures. They have influenced West African culture significantly."
+    },
+    {
+      "id": "berber",
+      "name": "Berber",
+      "region": "North Africa",
+      "countries": ["Morocco", "Algeria", "Tunisia", "Libya"],
+      "description": "The Berber people are the indigenous inhabitants of North Africa, known for their distinctive language, carpet weaving, and ancient traditions. They have a rich pre-Islamic heritage."
     }
   ],
   "festivals": [
@@ -28,9 +119,9 @@
       "name": "Sango Festival",
       "culture": "yoruba",
       "season": "June",
-      "location": "Oyo State, Nigeria",
+      "location": "West Africa",
       "significance": "Honoring the Orisha Sango, god of thunder and lightning",
-      "description": "Annual celebration featuring drumming, dancing, and spiritual rituals. The festival honors Sango, one of the most important Orishas in Yoruba spirituality.",
+      "description": "Annual celebration featuring drumming, dancing, and spiritual rituals. The festival honors Sango, one of the most important Orishas in Yoruba spirituality. Features elaborate costumes and traditional music.",
       "source": "UNESCO Intangible Cultural Heritage",
       "verified": true
     },
@@ -39,9 +130,9 @@
       "name": "Osun-Osogbo Festival",
       "culture": "yoruba",
       "season": "August",
-      "location": "Osogbo, Osun State",
+      "location": "West Africa",
       "significance": "Honoring the Orisha Osun, goddess of fertility and beauty",
-      "description": "Sacred festival with processions, prayers, and artistic performances. Celebrates the river goddess Osun and includes traditional ceremonies.",
+      "description": "Sacred festival with processions, prayers, and artistic performances. Celebrates the river goddess Osun and includes traditional ceremonies. One of the most important Yoruba festivals.",
       "source": "UNESCO Intangible Cultural Heritage",
       "verified": true
     },
@@ -50,10 +141,10 @@
       "name": "Iri-Ji Festival (New Yam Festival)",
       "culture": "igbo",
       "season": "August-September",
-      "location": "Various Igbo communities",
+      "location": "West Africa",
       "significance": "Harvest and thanksgiving celebration",
-      "description": "The new yam is presented to the community, followed by feasting and celebrations. This festival marks the beginning of the harvest season.",
-      "source": "Nigerian Cultural Archives",
+      "description": "The new yam is presented to the community, followed by feasting and celebrations. This festival marks the beginning of the harvest season and honors the earth goddess.",
+      "source": "African Cultural Archives",
       "verified": true
     },
     {
@@ -61,9 +152,86 @@
       "name": "Durbar Festival",
       "culture": "hausa",
       "season": "Islamic calendar (Sallah)",
-      "location": "Kano, Katsina, Daura",
+      "location": "West Africa",
       "significance": "Celebration of Islamic holidays with horse parades",
-      "description": "Elaborate horse parades featuring traditional rulers and community celebrations. One of the most colorful festivals in Nigeria.",
+      "description": "Elaborate horse parades featuring traditional rulers and community celebrations. One of the most colorful festivals in West Africa with decorated horses and traditional music.",
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "benin-festival",
+      "name": "Benin Festival",
+      "culture": "edo",
+      "season": "December",
+      "location": "West Africa",
+      "significance": "Celebration of Edo heritage and royal traditions",
+      "description": "Festival celebrating the rich history of the Kingdom of Benin with traditional dances, bronze displays, and royal ceremonies. Showcases Edo artistic excellence.",
+      "source": "African Cultural Archives",
+      "verified": true
+    },
+    {
+      "id": "gerewol-festival",
+      "name": "Gerewol Festival",
+      "culture": "fulani",
+      "season": "September",
+      "location": "West Africa",
+      "significance": "Celebration of Fulani beauty, culture, and pastoral traditions",
+      "description": "Annual gathering where young Fulani men display their beauty and charm through traditional dress and dance. Features cattle displays and cultural competitions.",
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "ijaw-water-festival",
+      "name": "Ijaw Water Festival",
+      "culture": "ijaw",
+      "season": "Various",
+      "location": "West Africa",
+      "significance": "Celebration of Ijaw maritime heritage and water traditions",
+      "description": "Festival celebrating the Ijaw people's deep connection to water with boat races, water ceremonies, and traditional performances.",
+      "source": "African Cultural Archives",
+      "verified": true
+    },
+    {
+      "id": "reed-dance",
+      "name": "Reed Dance (Umhlanga)",
+      "culture": "zulu",
+      "season": "September",
+      "location": "Southern Africa",
+      "significance": "Celebration of Zulu womanhood and cultural pride",
+      "description": "Annual ceremony where young Zulu women gather to dance and celebrate their culture. Features traditional dress, singing, and cultural performances.",
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "timkat-festival",
+      "name": "Timkat Festival",
+      "culture": "amhara",
+      "season": "January",
+      "location": "East Africa",
+      "significance": "Celebration of Ethiopian Orthodox Christian Epiphany",
+      "description": "Ancient Ethiopian festival celebrating the baptism of Jesus with processions, prayers, and water ceremonies. Features traditional music and religious observances.",
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "kente-festival",
+      "name": "Kente Festival",
+      "culture": "akan",
+      "season": "Various",
+      "location": "West Africa",
+      "significance": "Celebration of Akan textile heritage and cultural identity",
+      "description": "Festival celebrating the famous Kente cloth with fashion shows, cultural performances, and traditional ceremonies showcasing Akan artistic traditions.",
+      "source": "African Cultural Archives",
+      "verified": true
+    },
+    {
+      "id": "amazigh-festival",
+      "name": "Amazigh Festival",
+      "culture": "berber",
+      "season": "January",
+      "location": "North Africa",
+      "significance": "Celebration of Berber/Amazigh cultural identity and heritage",
+      "description": "Festival celebrating Berber culture with traditional music, dance, poetry, and language. Features traditional dress and cultural performances.",
       "source": "UNESCO Intangible Cultural Heritage",
       "verified": true
     }
@@ -74,10 +242,10 @@
       "name": "Adire",
       "culture": "yoruba",
       "medium": "Textile",
-      "description": "Traditional indigo-dyed fabric with resist patterns. Adire is a symbol of Yoruba identity and craftsmanship.",
-      "techniques": ["Resist-dyeing with cassava paste", "Wax-resist batik"],
+      "description": "Traditional indigo-dyed fabric with resist patterns. Adire is a symbol of Yoruba identity and craftsmanship, recognized globally.",
+      "techniques": ["Resist-dyeing with cassava paste", "Wax-resist batik", "Tie-dye"],
       "materials": ["Indigo dye", "Cotton cloth", "Cassava paste"],
-      "source": "Nigerian Cultural Archives",
+      "source": "UNESCO Intangible Cultural Heritage",
       "verified": true
     },
     {
@@ -85,9 +253,9 @@
       "name": "Yoruba Beadwork",
       "culture": "yoruba",
       "medium": "Jewelry/Decoration",
-      "description": "Intricate beaded garments and accessories used in royal ceremonies and celebrations.",
-      "techniques": ["Hand-stringing", "Weaving"],
-      "materials": ["Glass beads", "Thread", "Leather"],
+      "description": "Intricate beaded garments and accessories used in royal ceremonies and celebrations. Features complex geometric patterns.",
+      "techniques": ["Hand-stringing", "Weaving", "Beading"],
+      "materials": ["Glass beads", "Thread", "Leather", "Coral"],
       "verified": true
     },
     {
@@ -95,9 +263,9 @@
       "name": "Mbari Art",
       "culture": "igbo",
       "medium": "Sculpture/Architecture",
-      "description": "Elaborate mud structures with carved figures. Mbari houses are sacred spaces built to honor deities.",
-      "techniques": ["Mud modeling", "Carving"],
-      "materials": ["Clay", "Mud", "Natural pigments"],
+      "description": "Elaborate mud structures with carved figures. Mbari houses are sacred spaces built to honor deities and showcase artistic excellence.",
+      "techniques": ["Mud modeling", "Carving", "Sculpting"],
+      "materials": ["Clay", "Mud", "Natural pigments", "Wood"],
       "source": "UNESCO Intangible Cultural Heritage",
       "verified": true
     },
@@ -106,9 +274,9 @@
       "name": "Uli Art",
       "culture": "igbo",
       "medium": "Body/Wall Decoration",
-      "description": "Geometric patterns using natural dyes. Uli is used for body decoration and wall painting.",
-      "techniques": ["Hand-painting"],
-      "materials": ["Natural plant dyes", "Charcoal"],
+      "description": "Geometric patterns using natural dyes. Uli is used for body decoration, wall painting, and ceremonial purposes.",
+      "techniques": ["Hand-painting", "Stenciling"],
+      "materials": ["Natural plant dyes", "Charcoal", "Ochre"],
       "verified": true
     },
     {
@@ -116,9 +284,73 @@
       "name": "Hausa Textiles",
       "culture": "hausa",
       "medium": "Textile",
-      "description": "Indigo-dyed cloth with traditional patterns. Hausa textiles are renowned for their quality and design.",
-      "techniques": ["Indigo dyeing", "Weaving"],
-      "materials": ["Indigo dye", "Cotton thread"],
+      "description": "Indigo-dyed cloth with traditional patterns. Hausa textiles are renowned for their quality, durability, and intricate designs.",
+      "techniques": ["Indigo dyeing", "Weaving", "Hand-loom"],
+      "materials": ["Indigo dye", "Cotton thread", "Natural fibers"],
+      "verified": true
+    },
+    {
+      "id": "benin-bronze",
+      "name": "Benin Bronze Casting",
+      "culture": "edo",
+      "medium": "Sculpture/Metal",
+      "description": "Sophisticated bronze casting technique producing intricate plaques and sculptures. Represents one of Africa's greatest artistic achievements.",
+      "techniques": ["Lost-wax casting", "Metal casting", "Sculpting"],
+      "materials": ["Bronze", "Brass", "Copper"],
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "fulani-leather",
+      "name": "Fulani Leather Crafting",
+      "culture": "fulani",
+      "medium": "Leather",
+      "description": "Traditional leather working producing decorated pouches, bags, and accessories. Features intricate geometric patterns and dyes.",
+      "techniques": ["Hand-stitching", "Dyeing", "Embossing"],
+      "materials": ["Leather", "Natural dyes", "Thread"],
+      "verified": true
+    },
+    {
+      "id": "zulu-beadwork",
+      "name": "Zulu Beadwork",
+      "culture": "zulu",
+      "medium": "Jewelry/Decoration",
+      "description": "Intricate beaded garments with symbolic color meanings. Zulu beadwork communicates social status, age, and marital status.",
+      "techniques": ["Hand-beading", "Weaving", "Threading"],
+      "materials": ["Glass beads", "Thread", "Leather"],
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "kente-cloth",
+      "name": "Kente Cloth",
+      "culture": "akan",
+      "medium": "Textile",
+      "description": "Handwoven cloth with vibrant colors and intricate patterns. Each pattern has specific meaning and is used for important occasions.",
+      "techniques": ["Hand-weaving", "Loom-weaving"],
+      "materials": ["Silk", "Cotton", "Natural dyes"],
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "berber-carpet",
+      "name": "Berber Carpet Weaving",
+      "culture": "berber",
+      "medium": "Textile",
+      "description": "Traditional carpet weaving with geometric patterns and natural dyes. Each region has distinctive styles and patterns.",
+      "techniques": ["Hand-weaving", "Natural dyeing"],
+      "materials": ["Wool", "Natural plant dyes", "Silk"],
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "maasai-beadwork",
+      "name": "Maasai Beadwork",
+      "culture": "maasai",
+      "medium": "Jewelry/Decoration",
+      "description": "Colorful beaded jewelry and ornaments with symbolic meanings. Beadwork indicates age, social status, and cultural identity.",
+      "techniques": ["Hand-beading", "Threading"],
+      "materials": ["Glass beads", "Leather", "Thread"],
       "verified": true
     }
   ],
@@ -128,9 +360,9 @@
       "name": "Yoruba Masquerade",
       "culture": "yoruba",
       "category": "Performance",
-      "description": "Sacred masked performances with spiritual significance. Masquerades are used for spiritual communication and community bonding.",
+      "description": "Sacred masked performances with spiritual significance. Masquerades are used for spiritual communication, ancestral veneration, and community bonding.",
       "significance": "Spiritual communication, ancestral veneration, community bonding",
-      "practices": ["Elaborate costumes", "Rhythmic dancing", "Storytelling"]
+      "practices": ["Elaborate costumes", "Rhythmic dancing", "Storytelling", "Spiritual rituals"]
     },
     {
       "id": "naming-ceremony",
@@ -139,25 +371,97 @@
       "category": "Ceremony",
       "description": "Formal naming of newborns with cultural significance. The ceremony establishes the child's identity and connection to ancestors.",
       "significance": "Establishing child's identity and connection to ancestors",
-      "practices": ["Ritual prayers", "Family gathering", "Gift exchange"]
+      "practices": ["Ritual prayers", "Family gathering", "Gift exchange", "Blessings"]
     },
     {
       "id": "igbo-masquerade",
       "name": "Igbo Masquerade",
       "culture": "igbo",
       "category": "Performance",
-      "description": "Elaborate masked performances with cultural narratives. Used for entertainment and social commentary.",
+      "description": "Elaborate masked performances with cultural narratives. Used for entertainment, spiritual protection, and social commentary.",
       "significance": "Entertainment, spiritual protection, social commentary",
-      "practices": ["Masked performances", "Dancing", "Storytelling"]
+      "practices": ["Masked performances", "Dancing", "Storytelling", "Community participation"]
     },
     {
       "id": "bride-price",
       "name": "Bride Price",
       "culture": "igbo",
       "category": "Ceremony",
-      "description": "Traditional marriage negotiation and gift exchange. Establishes family bonds and social status.",
+      "description": "Traditional marriage negotiation and gift exchange. Establishes family bonds and social status between families.",
       "significance": "Establishing family bonds and social status",
-      "practices": ["Family negotiation", "Gift exchange", "Celebration"]
+      "practices": ["Family negotiation", "Gift exchange", "Celebration", "Feasting"]
+    },
+    {
+      "id": "edo-royal-ceremony",
+      "name": "Edo Royal Ceremony",
+      "culture": "edo",
+      "category": "Ceremony",
+      "description": "Traditional ceremonies honoring the Oba (king) and royal lineage. Features elaborate rituals and cultural performances.",
+      "significance": "Honoring royal authority and cultural heritage",
+      "practices": ["Royal processions", "Traditional music", "Ceremonial dress", "Ritual performances"]
+    },
+    {
+      "id": "fulani-pastoral-tradition",
+      "name": "Fulani Pastoral Tradition",
+      "culture": "fulani",
+      "category": "Lifestyle",
+      "description": "Traditional nomadic herding practices and cattle culture. Central to Fulani identity and social organization.",
+      "significance": "Cultural identity, economic sustenance, social organization",
+      "practices": ["Cattle herding", "Seasonal migration", "Pastoral knowledge", "Trade"]
+    },
+    {
+      "id": "ijaw-water-ceremony",
+      "name": "Ijaw Water Ceremony",
+      "culture": "ijaw",
+      "category": "Ceremony",
+      "description": "Traditional ceremonies honoring water spirits and the river. Reflects the Ijaw people's deep connection to water.",
+      "significance": "Spiritual connection to water, community bonding",
+      "practices": ["Water rituals", "Prayers", "Offerings", "Community gathering"]
+    },
+    {
+      "id": "zulu-coming-of-age",
+      "name": "Zulu Coming of Age Ceremony",
+      "culture": "zulu",
+      "category": "Ceremony",
+      "description": "Traditional initiation ceremony marking transition to adulthood. Includes cultural education and community recognition.",
+      "significance": "Marking adulthood, cultural education, community integration",
+      "practices": ["Initiation rituals", "Cultural teaching", "Celebration", "Community recognition"]
+    },
+    {
+      "id": "amhara-coffee-ceremony",
+      "name": "Amhara Coffee Ceremony",
+      "culture": "amhara",
+      "category": "Social Practice",
+      "description": "Traditional Ethiopian coffee ceremony with social and cultural significance. Central to hospitality and community bonding.",
+      "significance": "Hospitality, community bonding, cultural identity",
+      "practices": ["Coffee roasting", "Brewing", "Serving", "Social gathering"]
+    },
+    {
+      "id": "akan-stool-ceremony",
+      "name": "Akan Stool Ceremony",
+      "culture": "akan",
+      "category": "Ceremony",
+      "description": "Traditional ceremony honoring the sacred stool, symbol of authority and ancestral connection.",
+      "significance": "Honoring authority, ancestral connection, cultural continuity",
+      "practices": ["Ritual purification", "Prayers", "Community gathering", "Traditional music"]
+    },
+    {
+      "id": "berber-hospitality",
+      "name": "Berber Hospitality Tradition",
+      "culture": "berber",
+      "category": "Social Practice",
+      "description": "Traditional practice of generous hospitality and community sharing. Reflects Berber values of solidarity and kinship.",
+      "significance": "Community bonding, cultural values, social cohesion",
+      "practices": ["Guest welcoming", "Food sharing", "Tea ceremony", "Storytelling"]
+    },
+    {
+      "id": "maasai-warrior-tradition",
+      "name": "Maasai Warrior Tradition",
+      "culture": "maasai",
+      "category": "Lifestyle",
+      "description": "Traditional warrior culture and age-set system. Central to Maasai social organization and cultural identity.",
+      "significance": "Social organization, cultural identity, community protection",
+      "practices": ["Warrior training", "Age-set ceremonies", "Cattle raiding", "Community defense"]
     }
   ],
   "languages": [
@@ -166,24 +470,104 @@
       "name": "Yoruba",
       "culture": "yoruba",
       "speakers": "Millions",
-      "description": "Tonal language with complex grammar. Yoruba is spoken by millions across West Africa.",
-      "characteristics": ["Tonal language", "Niger-Congo family", "Multiple dialects"]
+      "description": "Tonal language with complex grammar. Yoruba is spoken by millions across West Africa and in diaspora communities worldwide.",
+      "characteristics": ["Tonal language", "Niger-Congo family", "Multiple dialects", "Influenced diaspora languages"]
     },
     {
       "id": "igbo-lang",
       "name": "Igbo",
       "culture": "igbo",
       "speakers": "Millions",
-      "description": "Niger-Congo language with multiple dialects. Igbo is spoken primarily in Southeast Nigeria.",
-      "characteristics": ["Niger-Congo family", "Multiple dialects", "Tonal elements"]
+      "description": "Niger-Congo language with multiple dialects. Igbo is spoken primarily in West Africa with significant diaspora presence.",
+      "characteristics": ["Niger-Congo family", "Multiple dialects", "Tonal elements", "Rich oral tradition"]
     },
     {
       "id": "hausa-lang",
       "name": "Hausa",
       "culture": "hausa",
       "speakers": "Millions",
-      "description": "Afro-Asiatic language widely spoken in West Africa. Hausa is a lingua franca in the region.",
-      "characteristics": ["Afro-Asiatic family", "Lingua franca", "Written script"]
+      "description": "Afro-Asiatic language widely spoken in West Africa. Hausa is a lingua franca in the region with written script.",
+      "characteristics": ["Afro-Asiatic family", "Lingua franca", "Written script", "Trade language"]
+    },
+    {
+      "id": "edo-lang",
+      "name": "Edo",
+      "culture": "edo",
+      "speakers": "Hundreds of thousands",
+      "description": "Niger-Congo language spoken by the Edo people. Has influenced regional linguistic patterns.",
+      "characteristics": ["Niger-Congo family", "Tonal language", "Multiple dialects"]
+    },
+    {
+      "id": "fulani-lang",
+      "name": "Fulani (Fula)",
+      "culture": "fulani",
+      "speakers": "Millions",
+      "description": "Niger-Congo language spoken across West Africa by Fulani people. Known for linguistic complexity.",
+      "characteristics": ["Niger-Congo family", "Widely distributed", "Multiple dialects", "Pastoral vocabulary"]
+    },
+    {
+      "id": "ijaw-lang",
+      "name": "Ijaw",
+      "culture": "ijaw",
+      "speakers": "Hundreds of thousands",
+      "description": "Niger-Congo language with maritime vocabulary. Reflects Ijaw connection to water and trade.",
+      "characteristics": ["Niger-Congo family", "Maritime vocabulary", "Multiple dialects"]
+    },
+    {
+      "id": "kanuri-lang",
+      "name": "Kanuri",
+      "culture": "kanuri",
+      "speakers": "Millions",
+      "description": "Nilo-Saharan language with rich literary tradition. Spoken across West Africa with historical importance.",
+      "characteristics": ["Nilo-Saharan family", "Literary tradition", "Trade language", "Islamic scholarship"]
+    },
+    {
+      "id": "zulu-lang",
+      "name": "Zulu",
+      "culture": "zulu",
+      "speakers": "Millions",
+      "description": "Bantu language spoken in Southern Africa. Known for click consonants and complex grammar.",
+      "characteristics": ["Bantu family", "Click consonants", "Tonal language", "Official language"]
+    },
+    {
+      "id": "xhosa-lang",
+      "name": "Xhosa",
+      "culture": "xhosa",
+      "speakers": "Millions",
+      "description": "Bantu language with distinctive click consonants. Spoken in Southern Africa with official status.",
+      "characteristics": ["Bantu family", "Click consonants", "Tonal language", "Official language"]
+    },
+    {
+      "id": "amharic-lang",
+      "name": "Amharic",
+      "culture": "amhara",
+      "speakers": "Millions",
+      "description": "Semitic language and official language of Ethiopia. Has ancient written tradition and literary heritage.",
+      "characteristics": ["Semitic family", "Ancient script", "Official language", "Literary tradition"]
+    },
+    {
+      "id": "akan-lang",
+      "name": "Akan",
+      "culture": "akan",
+      "speakers": "Millions",
+      "description": "Niger-Congo language spoken in West Africa. Includes Twi and Fante dialects with rich oral tradition.",
+      "characteristics": ["Niger-Congo family", "Multiple dialects", "Tonal language", "Oral tradition"]
+    },
+    {
+      "id": "berber-lang",
+      "name": "Berber (Tamazight)",
+      "culture": "berber",
+      "speakers": "Millions",
+      "description": "Afro-Asiatic language family of North Africa. Ancient language with modern standardization efforts.",
+      "characteristics": ["Afro-Asiatic family", "Ancient language", "Multiple dialects", "Official language"]
+    },
+    {
+      "id": "maasai-lang",
+      "name": "Maasai",
+      "culture": "maasai",
+      "speakers": "Hundreds of thousands",
+      "description": "Nilotic language spoken in East Africa. Reflects pastoral culture and traditions.",
+      "characteristics": ["Nilotic family", "Pastoral vocabulary", "Oral tradition", "Age-set terminology"]
     }
   ],
   "proverbs": [
@@ -200,16 +584,88 @@
       "meaning": "Self-reliance and confidence in one's abilities"
     },
     {
+      "id": "yoruba-proverb-3",
+      "text": "A child who says his mother will not sleep will also stay awake",
+      "culture": "yoruba",
+      "meaning": "Actions have consequences that affect everyone"
+    },
+    {
       "id": "igbo-proverb-1",
       "text": "A single hand cannot tie a bundle",
       "culture": "igbo",
       "meaning": "Unity brings strength"
     },
     {
+      "id": "igbo-proverb-2",
+      "text": "When brothers fight to the death, a stranger inherits their estate",
+      "culture": "igbo",
+      "meaning": "Internal conflict weakens the community"
+    },
+    {
       "id": "hausa-proverb-1",
       "text": "The dog that trots about finds a bone",
       "culture": "hausa",
       "meaning": "Effort and persistence lead to success"
+    },
+    {
+      "id": "hausa-proverb-2",
+      "text": "A fly that has no one to advise it follows the corpse into the grave",
+      "culture": "hausa",
+      "meaning": "Wisdom and guidance are essential"
+    },
+    {
+      "id": "edo-proverb-1",
+      "text": "The hand that rocks the cradle rules the world",
+      "culture": "edo",
+      "meaning": "The influence of mothers and women is powerful"
+    },
+    {
+      "id": "fulani-proverb-1",
+      "text": "A cow's tail does not prevent it from being struck by flies",
+      "culture": "fulani",
+      "meaning": "Even the strong face challenges"
+    },
+    {
+      "id": "zulu-proverb-1",
+      "text": "Ubuntu ngumuntu ngabantu",
+      "culture": "zulu",
+      "meaning": "A person is a person through other people - emphasizing community and shared humanity"
+    },
+    {
+      "id": "zulu-proverb-2",
+      "text": "Umuntu akakhohlwa indlela ayeya",
+      "culture": "zulu",
+      "meaning": "A person does not forget the way they came"
+    },
+    {
+      "id": "amhara-proverb-1",
+      "text": "He who conquers himself is greater than he who conquers a thousand men in battle",
+      "culture": "amhara",
+      "meaning": "Self-mastery is the greatest achievement"
+    },
+    {
+      "id": "akan-proverb-1",
+      "text": "Se wo were fi na wosankofa a yenkyi",
+      "culture": "akan",
+      "meaning": "It is not wrong to go back for that which you have forgotten"
+    },
+    {
+      "id": "akan-proverb-2",
+      "text": "Obi nka obi a, enye fie",
+      "culture": "akan",
+      "meaning": "When two elephants fight, it is the grass that suffers"
+    },
+    {
+      "id": "berber-proverb-1",
+      "text": "The tent is known by its ropes",
+      "culture": "berber",
+      "meaning": "A person is known by their associations and relationships"
+    },
+    {
+      "id": "maasai-proverb-1",
+      "text": "Enkai nanyokie inkishu loo",
+      "culture": "maasai",
+      "meaning": "God gave us cattle - reflecting the importance of cattle in Maasai culture"
     }
   ]
 }

@@ -192,13 +192,13 @@ const ArtifactModal = ({ artifact, open, onClose }: ArtifactModalProps) => {
   return (
     <>
       <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl h-[90vh] p-0 gap-0 bg-background border-border">
-        {/* Main Content Grid */}
-        <div className="flex h-full overflow-hidden">
-          {/* Left Panel - Cultural Context or Mind Map */}
-          <div className="w-2/5 border-r border-border/50 overflow-y-auto bg-background p-6">
+      <DialogContent className="max-w-6xl h-[90vh] md:h-[90vh] p-0 gap-0 bg-background border-border w-[95vw] md:w-auto max-h-[90vh]">
+        {/* Main Content Grid - Responsive Layout */}
+        <div className="flex flex-col md:flex-row h-full overflow-hidden">
+          {/* Left Panel - Cultural Context or Mind Map - Hidden on mobile, shown on tablet+ */}
+          <div className="hidden md:flex md:w-2/5 border-r border-border/50 overflow-y-auto bg-background p-4 md:p-6">
             {showMindMap && messages.length > 0 ? (
-              <div className="h-full flex flex-col">
+              <div className="h-full flex flex-col w-full">
                 <h3 className="text-lg font-bold mb-4 text-foreground">Knowledge Map</h3>
                 <div className="flex-1 rounded-lg overflow-hidden border border-border/50 bg-card/30">
                   <MindMapConnection
@@ -213,8 +213,8 @@ const ArtifactModal = ({ artifact, open, onClose }: ArtifactModalProps) => {
             )}
           </div>
 
-          {/* Right Panel - AI Assistant Chat */}
-          <div className="w-3/5 flex flex-col overflow-hidden">
+          {/* Right Panel - AI Assistant Chat - Full width on mobile */}
+          <div className="w-full md:w-3/5 flex flex-col overflow-hidden">
             <AIAssistant
               messages={messages}
               isTyping={isTyping}

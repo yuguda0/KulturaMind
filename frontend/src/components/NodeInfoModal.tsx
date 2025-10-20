@@ -123,42 +123,42 @@ const NodeInfoModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[80vh] bg-background border-border">
-        <DialogHeader className="border-b border-border/50 pb-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1">
-              <DialogTitle className="text-2xl font-bold text-foreground mb-2">
+      <DialogContent className="max-w-2xl max-h-[85vh] md:max-h-[80vh] bg-background border-border w-[95vw] md:w-auto">
+        <DialogHeader className="border-b border-border/50 pb-3 md:pb-4">
+          <div className="flex items-start justify-between gap-2 md:gap-4">
+            <div className="flex-1 min-w-0">
+              <DialogTitle className="text-lg md:text-2xl font-bold text-foreground mb-1 md:mb-2 break-words">
                 {title}
               </DialogTitle>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs md:text-sm text-muted-foreground truncate">
                 {artifactName} • {artifactCulture} Culture
               </p>
             </div>
             <button
               onClick={onClose}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           </div>
         </DialogHeader>
 
-        <ScrollArea className="h-[calc(80vh-150px)] pr-4">
-          <div className="space-y-6 py-4">
+        <ScrollArea className="h-[calc(85vh-120px)] md:h-[calc(80vh-150px)] pr-3 md:pr-4">
+          <div className="space-y-4 md:space-y-6 py-3 md:py-4">
             {/* Node-specific header */}
-            <div className={`p-4 rounded-lg border ${colors.bg} ${colors.border}`}>
-              <h3 className={`font-semibold ${colors.text} mb-2`}>
+            <div className={`p-3 md:p-4 rounded-lg border ${colors.bg} ${colors.border}`}>
+              <h3 className={`font-semibold text-sm md:text-base ${colors.text} mb-1 md:mb-2`}>
                 {title}
               </h3>
-              <p className="text-sm text-foreground">
+              <p className="text-xs md:text-sm text-foreground">
                 {info}
               </p>
             </div>
 
             {/* Extracted information from AI response */}
-            <div className="space-y-3">
-              <h4 className="font-semibold text-foreground">Detailed Information</h4>
-              <div className="prose prose-sm dark:prose-invert max-w-none">
+            <div className="space-y-2 md:space-y-3">
+              <h4 className="font-semibold text-sm md:text-base text-foreground">Detailed Information</h4>
+              <div className="prose prose-sm dark:prose-invert max-w-none text-xs md:text-sm">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {extractedInfo}
                 </ReactMarkdown>
@@ -166,18 +166,18 @@ const NodeInfoModal = ({
             </div>
 
             {/* Additional context */}
-            <div className="bg-card/50 border border-border/50 rounded-lg p-4 space-y-2">
-              <h4 className="font-semibold text-foreground text-sm">Context</h4>
-              <p className="text-sm text-muted-foreground">
+            <div className="bg-card/50 border border-border/50 rounded-lg p-3 md:p-4 space-y-1 md:space-y-2">
+              <h4 className="font-semibold text-foreground text-xs md:text-sm">Context</h4>
+              <p className="text-xs md:text-sm text-muted-foreground">
                 This information has been extracted from the AI Heritage Keeper's analysis of the {artifactName}.
                 Click on other nodes in the knowledge map to explore different aspects of this artifact.
               </p>
             </div>
 
             {/* Related nodes suggestion */}
-            <div className="bg-accent/10 border border-accent/30 rounded-lg p-4 space-y-2">
-              <h4 className="font-semibold text-foreground text-sm">Explore More</h4>
-              <p className="text-sm text-muted-foreground">
+            <div className="bg-accent/10 border border-accent/30 rounded-lg p-3 md:p-4 space-y-1 md:space-y-2">
+              <h4 className="font-semibold text-foreground text-xs md:text-sm">Explore More</h4>
+              <p className="text-xs md:text-sm text-muted-foreground">
                 Try clicking on other nodes in the knowledge map to discover connections between different aspects
                 of the {artifactName} and its cultural significance.
               </p>

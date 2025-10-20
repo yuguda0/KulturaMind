@@ -15,6 +15,9 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
   const [mapboxToken, setMapboxToken] = useState("");
   const [artifacts, setArtifacts] = useState<Artifact[]>([]);
 
+  // Calculate unique cultures from artifacts
+  const uniqueCultures = new Set(artifacts.map(a => a.culture).filter(Boolean));
+
   // Mock artifacts for development
   const mockArtifacts: Artifact[] = [
     {
@@ -124,12 +127,13 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
 
     // Initialize map centered on Nigeria with dark mode
     const isDarkMode = document.documentElement.classList.contains('dark');
+    const isMobile = window.innerWidth < 768;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: isDarkMode ? "mapbox://styles/mapbox/dark-v11" : "mapbox://styles/mapbox/light-v11",
       center: [8.0, 9.0],
-      zoom: 5.5,
-      pitch: 45,
+      zoom: isMobile ? 4.5 : 5.5,
+      pitch: isMobile ? 0 : 45,
       bearing: 0,
     });
 
@@ -154,10 +158,15 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
       map.current?.setTerrain({ source: "mapbox-dem", exaggeration: 1 });
 
       // Add artifacts as floating image markers
+      const isMobileView = window.innerWidth < 768;
+      const markerSize = isMobileView ? 60 : 80;
+      const shadowWidth = isMobileView ? 30 : 40;
+
       artifacts.forEach((artifact) => {
         // Create wrapper element
         const wrapperEl = document.createElement("div");
         wrapperEl.className = "marker-wrapper";
+        wrapperEl.style.cursor = "pointer";
 
         // Create the floating image marker
         const markerEl = document.createElement("div");
@@ -175,8 +184,8 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
         // Create floating effect container
         const floatContainer = document.createElement("div");
         floatContainer.className = "float-container";
-        floatContainer.style.width = "80px";
-        floatContainer.style.height = "80px";
+        floatContainer.style.width = `${markerSize}px`;
+        floatContainer.style.height = `${markerSize}px`;
         floatContainer.style.position = "relative";
         floatContainer.style.transition = "all 0.3s ease";
 
@@ -187,7 +196,7 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
         shadowEl.style.bottom = "-10px";
         shadowEl.style.left = "50%";
         shadowEl.style.transform = "translateX(-50%)";
-        shadowEl.style.width = "40px";
+        shadowEl.style.width = `${shadowWidth}px`;
         shadowEl.style.height = "8px";
         shadowEl.style.backgroundColor = "rgba(0,0,0,0.2)";
         shadowEl.style.borderRadius = "50%";
@@ -200,17 +209,32 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
         markerEl.appendChild(floatContainer);
         wrapperEl.appendChild(markerEl);
 
-        // Add hover effects
+        // Add hover effects (desktop)
         wrapperEl.addEventListener("mouseenter", () => {
           floatContainer.style.transform = "scale(1.2) translateY(-5px)";
-          shadowEl.style.width = "50px";
+          shadowEl.style.width = `${shadowWidth + 10}px`;
           shadowEl.style.filter = "blur(6px)";
           shadowEl.style.backgroundColor = "rgba(0,0,0,0.3)";
         });
 
         wrapperEl.addEventListener("mouseleave", () => {
           floatContainer.style.transform = "scale(1) translateY(0)";
-          shadowEl.style.width = "40px";
+          shadowEl.style.width = `${shadowWidth}px`;
+          shadowEl.style.filter = "blur(4px)";
+          shadowEl.style.backgroundColor = "rgba(0,0,0,0.2)";
+        });
+
+        // Add touch effects (mobile)
+        wrapperEl.addEventListener("touchstart", () => {
+          floatContainer.style.transform = "scale(1.15) translateY(-3px)";
+          shadowEl.style.width = `${shadowWidth + 8}px`;
+          shadowEl.style.filter = "blur(5px)";
+          shadowEl.style.backgroundColor = "rgba(0,0,0,0.25)";
+        });
+
+        wrapperEl.addEventListener("touchend", () => {
+          floatContainer.style.transform = "scale(1) translateY(0)";
+          shadowEl.style.width = `${shadowWidth}px`;
           shadowEl.style.filter = "blur(4px)";
           shadowEl.style.backgroundColor = "rgba(0,0,0,0.2)";
         });
@@ -241,43 +265,43 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
   }, [onArtifactClick, artifacts]);
 
   return (
-    <div className="relative w-full h-screen pt-16">
+    <div className="relative w-full h-screen">
       <div ref={mapContainer} className="absolute inset-0" />
 
-      {/* Legend */}
-      <div className="absolute bottom-4 right-4 bg-card/80 backdrop-blur-md px-6 py-4 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-shadow duration-300 animate-slide-up animation-delay-200">
-        <div className="space-y-3">
-          <h3 className="font-semibold text-foreground text-sm">Explore</h3>
-          <div className="space-y-2">
-            <div className="flex items-center gap-3">
-              <span className="text-lg">🏛️</span>
-              <span className="text-sm text-muted-foreground">Click artifacts</span>
+      {/* Legend - Hidden on small mobile, shown on tablet+ */}
+      <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 bg-card/80 backdrop-blur-md px-3 sm:px-6 py-3 sm:py-4 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-shadow duration-300 animate-slide-up animation-delay-200 hidden sm:block">
+        <div className="space-y-2 sm:space-y-3">
+          <h3 className="font-semibold text-foreground text-xs sm:text-sm">Explore</h3>
+          <div className="space-y-1 sm:space-y-2">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-base sm:text-lg">🏛️</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">Click artifacts</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-lg">💬</span>
-              <span className="text-sm text-muted-foreground">Chat with AI</span>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-base sm:text-lg">💬</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">Chat with AI</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="text-lg">🌍</span>
-              <span className="text-sm text-muted-foreground">Discover stories</span>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-base sm:text-lg">🌍</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">Discover stories</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Floating Stats Card */}
-      <div className="absolute top-20 right-4 bg-card/80 backdrop-blur-md px-6 py-4 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-shadow duration-300 animate-slide-up animation-delay-100">
-        <div className="grid grid-cols-3 gap-6">
+      {/* Floating Stats Card - Responsive sizing */}
+      <div className="absolute top-16 sm:top-20 right-3 sm:right-4 bg-card/80 backdrop-blur-md px-3 sm:px-6 py-3 sm:py-4 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-shadow duration-300 animate-slide-up animation-delay-100">
+        <div className="grid grid-cols-3 gap-2 sm:gap-6">
           <div className="text-center">
-            <p className="text-2xl font-bold text-accent">19</p>
+            <p className="text-lg sm:text-2xl font-bold text-accent">{artifacts.length}</p>
             <p className="text-xs text-muted-foreground">Artifacts</p>
           </div>
           <div className="text-center border-l border-r border-border/30">
-            <p className="text-2xl font-bold text-secondary">3</p>
+            <p className="text-lg sm:text-2xl font-bold text-secondary">{uniqueCultures.size}</p>
             <p className="text-xs text-muted-foreground">Cultures</p>
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold text-primary">∞</p>
+            <p className="text-lg sm:text-2xl font-bold text-primary">∞</p>
             <p className="text-xs text-muted-foreground">Stories</p>
           </div>
         </div>

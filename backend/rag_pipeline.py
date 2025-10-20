@@ -53,20 +53,22 @@ class RAGPipeline:
     def query(
         self,
         query: str,
-        top_k: int = 5,
+        top_k: int = 10,
         use_reasoning: bool = True,
         use_llm: bool = True,
-        additional_context: Optional[Dict[str, Any]] = None
+        additional_context: Optional[Dict[str, Any]] = None,
+        enforce_web_enrichment: bool = True
     ) -> Dict[str, Any]:
         """
-        Execute RAG query with optional web-enriched context
+        Execute RAG query with mandatory web-enriched context
 
         Args:
             query: User query
-            top_k: Number of documents to retrieve
+            top_k: Number of documents to retrieve (default 10 for comprehensive context)
             use_reasoning: Use MeTTa reasoning
             use_llm: Use LLM for generation
             additional_context: Optional web-enriched context (artifacts, Wikipedia data)
+            enforce_web_enrichment: If True, web enrichment is mandatory for comprehensive responses
 
         Returns:
             Response with retrieved context and generated answer
@@ -166,15 +168,15 @@ class RAGPipeline:
             # Ask LLM to identify relevant documents
             doc_list = "\n".join([f"- {d['metadata'].get('name', d['text'][:50])}: {d['text'][:100]}" for d in documents])
 
-            filter_prompt = f"""Given this query: "{query}"
+            filter_prompt = f"""Query: "{query}"
 
-Which of these cultural items are most relevant? Return only the names/IDs of the top {top_k} most relevant items, one per line.
+Return only the names of the top {top_k} most relevant cultural items, one per line. No explanations.
 
 Items:
 {doc_list}"""
 
             # Get LLM response
-            response = self.llm.generate_response(query, [{'text': filter_prompt}])
+            response = self.llm.generate_response(query, [{'text': filter_prompt, 'type': 'filter', 'metadata': {}}])
 
             # Parse response to get relevant document names
             relevant_names = set()
@@ -297,30 +299,41 @@ Items:
         context: List[Dict[str, Any]]
     ) -> str:
         """
-        Generate response without LLM (fallback)
-        
+        Generate response without LLM (fallback) - always provides informative content
+
         Args:
             query: User query
             context: Retrieved context
-            
+
         Returns:
             Generated response
         """
         if not context:
-            return "I don't have information about that in the cultural knowledge base."
-        
-        # Use top result
+            # Provide comprehensive fallback response about African cultural heritage
+            return (
+                "Based on our comprehensive African cultural heritage knowledge base:\n\n"
+                "Our platform covers diverse African cultures across the continent including:\n"
+                "- West Africa: Yoruba, Igbo, Hausa, Edo, Fulani, Ijaw, Kanuri, Tiv, Efik, Ibibio, Akan\n"
+                "- East Africa: Maasai, Amhara\n"
+                "- Southern Africa: Zulu, Xhosa\n"
+                "- North Africa: Berber\n\n"
+                "Each culture features rich traditions including festivals, art forms, languages, and proverbs. "
+                "Please refine your query to explore specific cultural aspects, and our knowledge base will provide detailed information."
+            )
+
+        # Use top results to build comprehensive response
         primary = context[0]
         metadata = primary.get('metadata', {})
-        
+
         response = f"**{metadata.get('name', 'Cultural Item')}**\n\n"
         response += f"Culture: {metadata.get('culture', 'Unknown')}\n"
         response += f"Type: {primary.get('type', 'Unknown').replace('_', ' ').title()}\n\n"
         response += f"{primary.get('text', 'Information available in knowledge base.')}\n\n"
-        
+
         if len(context) > 1:
-            response += f"*Related items: {', '.join([c['metadata'].get('name', 'Unknown') for c in context[1:3]])}*"
-        
+            related_items = [c['metadata'].get('name', 'Unknown') for c in context[1:5]]
+            response += f"Related cultural items: {', '.join(related_items)}"
+
         return response
 
     def get_stats(self) -> Dict[str, Any]:
