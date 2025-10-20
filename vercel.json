@@ -2,7 +2,6 @@
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "framework": "vite",
-  "nodeVersion": "18.x",
   "installCommand": "npm install --legacy-peer-deps",
   "env": {
     "VITE_API_URL": "@vite_api_url"
