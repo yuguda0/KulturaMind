@@ -62,9 +62,31 @@ export interface SystemInfo {
 
 class APIClient {
   private baseUrl: string;
+  private requestTimeout: number = 30000; // 30 second timeout
 
   constructor(baseUrl: string = API_BASE_URL) {
     this.baseUrl = baseUrl;
+    console.log('APIClient initialized with baseUrl:', this.baseUrl);
+  }
+
+  /**
+   * Fetch with timeout
+   */
+  private async fetchWithTimeout(url: string, options: RequestInit = {}): Promise<Response> {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), this.requestTimeout);
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      return response;
+    } catch (error) {
+      clearTimeout(timeoutId);
+      throw error;
+    }
   }
 
   /**
@@ -72,9 +94,12 @@ class APIClient {
    */
   async checkHealth(): Promise<{ status: string; rag_pipeline_ready: boolean }> {
     try {
-      const response = await fetch(`${this.baseUrl}/health`);
-      if (!response.ok) throw new Error('Health check failed');
-      return await response.json();
+      console.log('Checking health at:', `${this.baseUrl}/health`);
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/health`);
+      if (!response.ok) throw new Error(`Health check failed: ${response.status}`);
+      const data = await response.json();
+      console.log('Health check successful:', data);
+      return data;
     } catch (error) {
       console.error('Health check error:', error);
       throw error;
@@ -86,7 +111,7 @@ class APIClient {
    */
   async getSystemInfo(): Promise<SystemInfo> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/info`);
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/api/info`);
       if (!response.ok) throw new Error('Failed to fetch system info');
       return await response.json();
     } catch (error) {
@@ -100,7 +125,7 @@ class APIClient {
    */
   async search(query: string, topK: number = 5): Promise<SearchResponse> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/search`, {
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/api/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -131,7 +156,7 @@ class APIClient {
     useLLM: boolean = true
   ): Promise<QueryResponse> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/query`, {
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/api/query`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -159,7 +184,7 @@ class APIClient {
    */
   async getArtifacts(): Promise<{ artifacts: Artifact[]; count: number }> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/artifacts`);
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/api/artifacts`);
       if (!response.ok) throw new Error('Failed to fetch artifacts');
       return await response.json();
     } catch (error) {
@@ -173,7 +198,7 @@ class APIClient {
    */
   async getArtifact(artifactId: string): Promise<Artifact> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/artifacts/${artifactId}`);
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/api/artifacts/${artifactId}`);
       if (!response.ok) throw new Error('Failed to fetch artifact');
       return await response.json();
     } catch (error) {
@@ -187,7 +212,7 @@ class APIClient {
    */
   async getArtifactsByCulture(culture: string): Promise<{ culture: string; artifacts: Artifact[]; count: number }> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/artifacts/culture/${culture}`);
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/api/artifacts/culture/${culture}`);
       if (!response.ok) throw new Error('Failed to fetch artifacts by culture');
       return await response.json();
     } catch (error) {
@@ -205,7 +230,7 @@ class APIClient {
     useLLM: boolean = true
   ): AsyncGenerator<StreamChunk, void, unknown> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/chat/stream`, {
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/api/chat/stream`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
