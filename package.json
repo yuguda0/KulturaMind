@@ -1,0 +1,21 @@
+{
+  "name": "kulturamind",
+  "version": "1.0.0",
+  "description": "KulturaMind - African Cultural Heritage Explorer",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "lint": "cd frontend && npm run lint"
+  },
+  "keywords": [
+    "cultural-heritage",
+    "africa",
+    "ai",
+    "knowledge-graph"
+  ],
+  "author": "KulturaMind Team",
+  "license": "MIT"
+}
+
