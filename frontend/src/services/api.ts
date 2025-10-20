@@ -62,7 +62,8 @@ export interface SystemInfo {
 
 class APIClient {
   private baseUrl: string;
-  private requestTimeout: number = 30000; // 30 second timeout
+  private requestTimeout: number = 60000; // 60 second timeout for slow backends
+  private maxRetries: number = 3;
 
   constructor(baseUrl: string = API_BASE_URL) {
     this.baseUrl = baseUrl;
@@ -90,20 +91,34 @@ class APIClient {
   }
 
   /**
-   * Health check endpoint
+   * Health check endpoint with retry logic
    */
   async checkHealth(): Promise<{ status: string; rag_pipeline_ready: boolean }> {
-    try {
-      console.log('Checking health at:', `${this.baseUrl}/health`);
-      const response = await this.fetchWithTimeout(`${this.baseUrl}/health`);
-      if (!response.ok) throw new Error(`Health check failed: ${response.status}`);
-      const data = await response.json();
-      console.log('Health check successful:', data);
-      return data;
-    } catch (error) {
-      console.error('Health check error:', error);
-      throw error;
+    let lastError: Error | null = null;
+
+    for (let attempt = 1; attempt <= this.maxRetries; attempt++) {
+      try {
+        console.log(`Health check attempt ${attempt}/${this.maxRetries} at:`, `${this.baseUrl}/health`);
+        const response = await this.fetchWithTimeout(`${this.baseUrl}/health`);
+        if (!response.ok) throw new Error(`Health check failed: ${response.status}`);
+        const data = await response.json();
+        console.log('Health check successful:', data);
+        return data;
+      } catch (error) {
+        lastError = error instanceof Error ? error : new Error(String(error));
+        console.warn(`Health check attempt ${attempt} failed:`, lastError.message);
+
+        if (attempt < this.maxRetries) {
+          // Wait before retrying (exponential backoff)
+          const delay = Math.min(1000 * Math.pow(2, attempt - 1), 5000);
+          console.log(`Retrying in ${delay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
+      }
     }
+
+    console.error('Health check failed after all retries:', lastError);
+    throw lastError || new Error('Health check failed');
   }
 
   /**
