@@ -1,0 +1,418 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
+All colors MUST be HSL.
+AGI + Cultural Memory Theme
+*/
+
+/* ============================================
+   ANIMATIONS - AGI + Cultural Memory Theme
+   ============================================ */
+
+/* Floating animation for markers */
+.floating-artifact-marker {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Glow effect for markers */
+.floating-artifact-marker img {
+  border: 3px solid hsl(var(--heritage-gold));
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.floating-artifact-marker:hover {
+  animation-duration: 1.5s;
+}
+
+/* AGI Neural Network Animation */
+@keyframes neural-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.neural-pulse {
+  animation: neural-pulse 2s ease-in-out infinite;
+}
+
+/* Shimmer effect for AI responses */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer-effect {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Typing indicator animation */
+@keyframes typing {
+  0%, 60%, 100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+}
+
+.typing-indicator span {
+  animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* 3D Connection Node Animation */
+@keyframes node-float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-8px) translateX(4px);
+  }
+  50% {
+    transform: translateY(-12px) translateX(-4px);
+  }
+  75% {
+    transform: translateY(-6px) translateX(6px);
+  }
+}
+
+.connection-node {
+  animation: node-float 4s ease-in-out infinite;
+}
+
+/* Pulse glow for active connections */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(147, 51, 234, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
+  }
+}
+
+.connection-active {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Line animation for connections */
+@keyframes line-draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.connection-line {
+  animation: line-draw 2s ease-in-out forwards;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+/* Glow animation for AI elements */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.3), 0 0 10px rgba(139, 92, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5), 0 0 30px rgba(139, 92, 246, 0.2);
+  }
+}
+
+.glow-effect {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Particle effect */
+@keyframes particle-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(var(--tx, 0));
+  }
+}
+
+.particle {
+  animation: particle-float 3s ease-out forwards;
+}
+
+/* Blob animation */
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+@layer base {
+  :root {
+    /* AGI + Cultural Memory Color Palette - Modern Dark-First Design */
+    /* Light mode: Minimal, clean */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    /* Primary: Vibrant Terracotta (Cultural Heritage) */
+    --primary: 15 75% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Deep Green (Nigerian Flag + Nature) */
+    --secondary: 150 45% 32%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Accent: Vibrant Purple (AGI/Neural Networks) */
+    --accent: 270 70% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 20% 82%;
+    --input: 30 20% 88%;
+    --ring: 270 70% 55%;
+
+    --radius: 0.75rem;
+
+    /* Heritage Color Tokens */
+    --heritage-clay: 15 75% 48%;
+    --heritage-clay-light: 15 70% 65%;
+    --heritage-gold: 45 90% 52%;
+    --heritage-green: 150 45% 32%;
+    --heritage-green-light: 150 40% 45%;
+
+    /* AGI Color Tokens */
+    --agi-purple: 270 70% 55%;
+    --agi-purple-light: 270 65% 70%;
+    --agi-cyan: 180 80% 50%;
+    --agi-cyan-light: 180 75% 65%;
+
+    /* Gradients */
+    --gradient-heritage: linear-gradient(
+      135deg,
+      hsl(var(--heritage-clay)),
+      hsl(var(--heritage-gold))
+    );
+    --gradient-agi: linear-gradient(
+      135deg,
+      hsl(var(--agi-purple)),
+      hsl(var(--agi-cyan))
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      hsl(var(--background)),
+      hsl(30 25% 93%)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(var(--heritage-clay)),
+      hsl(var(--agi-purple)),
+      hsl(var(--heritage-green))
+    );
+
+    /* Shadows */
+    --shadow-artifact: 0 10px 40px -10px hsl(var(--heritage-clay) / 0.3);
+    --shadow-modal: 0 20px 60px -15px hsl(25 20% 15% / 0.4);
+    --shadow-agi: 0 10px 40px -10px hsl(var(--agi-purple) / 0.3);
+    --shadow-glow: 0 0 20px hsl(var(--agi-purple) / 0.4);
+
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode: Premium dark with vibrant accents */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 15 75% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 150 40% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    /* AGI Purple accent in dark mode */
+    --accent: 270 75% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 270 75% 65%;
+
+    --heritage-clay: 15 75% 58%;
+    --heritage-clay-light: 15 70% 72%;
+    --heritage-gold: 45 90% 55%;
+    --heritage-green: 150 40% 35%;
+    --heritage-green-light: 150 35% 48%;
+
+    --agi-purple: 270 75% 60%;
+    --agi-purple-light: 270 70% 75%;
+    --agi-cyan: 180 85% 55%;
+    --agi-cyan-light: 180 80% 70%;
+
+    --shadow-artifact: 0 10px 40px -10px hsl(var(--heritage-clay) / 0.5);
+    --shadow-modal: 0 20px 60px -15px hsl(0 0% 0% / 0.8);
+    --shadow-agi: 0 10px 40px -10px hsl(var(--agi-purple) / 0.5);
+    --shadow-glow: 0 0 20px hsl(var(--agi-purple) / 0.6);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

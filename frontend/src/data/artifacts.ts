@@ -1,0 +1,158 @@
+import beast from "@/assets/beast.jpg";
+
+export interface Artifact {
+  id: string;
+  name: string;
+  location: string;
+  coordinates: [number, number]; // [longitude, latitude]
+  era: string;
+  year: string;
+  description: string;
+  significance: string;
+  culturalContext: string;
+  imageUrl?: string;
+}
+
+export const nigerianArtifacts: Artifact[] = [
+  {
+    id: "nok-terracotta",
+    name: "Nok Terracotta Head",
+    location: "Nok, Kaduna State",
+    coordinates: [8.0, 10.0],
+    era: "Ancient",
+    year: "500 BCE - 200 CE",
+    description:
+      "A remarkable terracotta sculpture representing one of the earliest known examples of figurative art in sub-Saharan Africa.",
+    significance:
+      "The Nok culture produced some of Africa's earliest terracotta sculptures, showcasing advanced artistic and technical capabilities.",
+    culturalContext:
+      "These sculptures were likely used in religious and ceremonial contexts, depicting human figures with elaborate hairstyles and jewelry.",
+  },
+  {
+    id: "benin-bronze",
+    name: "Benin Bronze Plaque",
+    location: "Benin City, Edo State",
+    coordinates: [5.6037, 6.335],
+    era: "Medieval",
+    year: "13th-16th Century",
+    description:
+      "Intricately cast bronze plaques that once adorned the royal palace of the Kingdom of Benin.",
+    significance:
+      "These bronzes demonstrate exceptional metalworking skills and document the history and culture of the Benin Empire.",
+    culturalContext:
+      "Created using the lost-wax casting technique, these plaques depicted court life, ceremonies, and the power of the Oba (king).",
+  },
+  {
+    id: "igbo-ukwu",
+    name: "Igbo-Ukwu Bronze",
+    imageUrl: beast,
+    location: "Igbo-Ukwu, Anambra State",
+    coordinates: [7.0833, 6.05],
+    era: "Ancient",
+    year: "9th-10th Century",
+    description:
+      "Elaborate bronze artifacts including vessels, pendants, and ceremonial objects with intricate decorative patterns.",
+    significance:
+      "Evidence of sophisticated bronze-working technology in pre-colonial West Africa, predating many European techniques.",
+    culturalContext:
+      "Associated with burial and religious practices, these objects indicate a wealthy and culturally advanced society.",
+  },
+  {
+    id: "ife-bronze-head",
+    name: "Ife Bronze Head",
+    location: "Ile-Ife, Osun State",
+    coordinates: [4.56, 7.4833],
+    era: "Medieval",
+    year: "12th-15th Century",
+    description:
+      "Naturalistic bronze heads representing Yoruba royalty, celebrated for their remarkable realism and artistry.",
+    significance:
+      "Considered among the finest examples of African art, showcasing advanced casting techniques and aesthetic sophistication.",
+    culturalContext:
+      "These heads likely represented deceased Ooni (kings) and were used in royal shrines and ceremonies.",
+  },
+  {
+    id: "esie-soapstone",
+    name: "Esie Soapstone Figures",
+    location: "Esie, Kwara State",
+    coordinates: [4.8333, 7.9667],
+    era: "Medieval",
+    year: "14th-16th Century",
+    description:
+      "Over 800 soapstone figures depicting humans in various poses, discovered in a sacred grove.",
+    significance:
+      "The largest collection of ancient stone carvings in sub-Saharan Africa, their origin remains a mystery.",
+    culturalContext:
+      "Local traditions associate these figures with ancient visitors who were turned to stone, highlighting their sacred significance.",
+  },
+  {
+    id: "calabar-ekpe",
+    name: "Ekpe Masquerade Costume",
+    location: "Calabar, Cross River State",
+    coordinates: [8.3417, 4.9517],
+    era: "Traditional",
+    year: "18th-19th Century",
+    description:
+      "Elaborate masquerade costume of the Ekpe society, featuring intricate beadwork and symbolic designs.",
+    significance:
+      "Represents the powerful Ekpe secret society that governed communities and enforced traditional laws.",
+    culturalContext:
+      "The Ekpe society played crucial roles in social regulation, trade, and spiritual practices among the Efik and Ibibio peoples.",
+  },
+  {
+    id: "kano-manuscript",
+    name: "Kano Chronicle Manuscript",
+    location: "Kano, Kano State",
+    coordinates: [8.5167, 12.0],
+    era: "Medieval",
+    year: "15th-16th Century",
+    description:
+      "Historical manuscript documenting the rulers of Kano and the introduction of Islam to the region.",
+    significance:
+      "One of the oldest written historical records in West Africa, providing invaluable insights into pre-colonial Hausa kingdoms.",
+    culturalContext:
+      "Reflects the Islamic scholarly tradition and the importance of written history in Hausa civilization.",
+  },
+  {
+    id: "jos-plateau-pottery",
+    name: "Jos Plateau Pottery",
+    location: "Jos, Plateau State",
+    coordinates: [8.8921, 9.9285],
+    era: "Ancient",
+    year: "3000 BCE - 500 CE",
+    description:
+      "Ancient pottery with distinctive geometric patterns and functional designs.",
+    significance:
+      "Evidence of early sedentary communities and agricultural practices on the Jos Plateau.",
+    culturalContext:
+      "These ceramics were used for food storage, cooking, and ceremonial purposes by early farming communities.",
+  },
+  {
+    id: "urhobo-shrine",
+    name: "Urhobo Ancestral Shrine Object",
+    location: "Warri, Delta State",
+    coordinates: [5.5167, 5.75],
+    era: "Traditional",
+    year: "19th-20th Century",
+    description:
+      "Carved wooden figure used in ancestral veneration and spiritual practices.",
+    significance:
+      "Represents the Urhobo people's complex belief system and connection to ancestors.",
+    culturalContext:
+      "Used in family shrines to honor ancestors and seek their guidance and protection.",
+  },
+  {
+    id: "nsukka-pottery",
+    name: "Nsukka-Igbo Pottery",
+    location: "Nsukka, Enugu State",
+    coordinates: [7.395, 6.8567],
+    era: "Ancient",
+    year: "2000 BCE - 500 CE",
+    description:
+      "Early pottery with unique decorative styles characteristic of the Nsukka region.",
+    significance:
+      "Demonstrates the long history of ceramic arts and cultural continuity in Igbo lands.",
+    culturalContext:
+      "These vessels were integral to daily life, used for cooking, storage, and ritual purposes.",
+  },
+];

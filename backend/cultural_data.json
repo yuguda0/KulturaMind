@@ -1,0 +1,216 @@
+{
+  "cultures": [
+    {
+      "id": "yoruba",
+      "name": "Yoruba",
+      "region": "Southwest Nigeria",
+      "country": "Nigeria",
+      "description": "The Yoruba people are one of the largest ethnic groups in West Africa, known for their rich artistic traditions, complex social structures, and spiritual practices."
+    },
+    {
+      "id": "igbo",
+      "name": "Igbo",
+      "region": "Southeast Nigeria",
+      "country": "Nigeria",
+      "description": "The Igbo people are known for their democratic governance, artistic excellence, and strong community bonds. They have a rich tradition of masquerades and visual arts."
+    },
+    {
+      "id": "hausa",
+      "name": "Hausa",
+      "region": "Northern Nigeria",
+      "country": "Nigeria",
+      "description": "The Hausa people are known for their trade networks, Islamic traditions, and distinctive textile and leather crafts."
+    }
+  ],
+  "festivals": [
+    {
+      "id": "sango-festival",
+      "name": "Sango Festival",
+      "culture": "yoruba",
+      "season": "June",
+      "location": "Oyo State, Nigeria",
+      "significance": "Honoring the Orisha Sango, god of thunder and lightning",
+      "description": "Annual celebration featuring drumming, dancing, and spiritual rituals. The festival honors Sango, one of the most important Orishas in Yoruba spirituality.",
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "osun-osogbo-festival",
+      "name": "Osun-Osogbo Festival",
+      "culture": "yoruba",
+      "season": "August",
+      "location": "Osogbo, Osun State",
+      "significance": "Honoring the Orisha Osun, goddess of fertility and beauty",
+      "description": "Sacred festival with processions, prayers, and artistic performances. Celebrates the river goddess Osun and includes traditional ceremonies.",
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "iri-ji-festival",
+      "name": "Iri-Ji Festival (New Yam Festival)",
+      "culture": "igbo",
+      "season": "August-September",
+      "location": "Various Igbo communities",
+      "significance": "Harvest and thanksgiving celebration",
+      "description": "The new yam is presented to the community, followed by feasting and celebrations. This festival marks the beginning of the harvest season.",
+      "source": "Nigerian Cultural Archives",
+      "verified": true
+    },
+    {
+      "id": "durbar-festival",
+      "name": "Durbar Festival",
+      "culture": "hausa",
+      "season": "Islamic calendar (Sallah)",
+      "location": "Kano, Katsina, Daura",
+      "significance": "Celebration of Islamic holidays with horse parades",
+      "description": "Elaborate horse parades featuring traditional rulers and community celebrations. One of the most colorful festivals in Nigeria.",
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    }
+  ],
+  "art_forms": [
+    {
+      "id": "adire",
+      "name": "Adire",
+      "culture": "yoruba",
+      "medium": "Textile",
+      "description": "Traditional indigo-dyed fabric with resist patterns. Adire is a symbol of Yoruba identity and craftsmanship.",
+      "techniques": ["Resist-dyeing with cassava paste", "Wax-resist batik"],
+      "materials": ["Indigo dye", "Cotton cloth", "Cassava paste"],
+      "source": "Nigerian Cultural Archives",
+      "verified": true
+    },
+    {
+      "id": "beadwork",
+      "name": "Yoruba Beadwork",
+      "culture": "yoruba",
+      "medium": "Jewelry/Decoration",
+      "description": "Intricate beaded garments and accessories used in royal ceremonies and celebrations.",
+      "techniques": ["Hand-stringing", "Weaving"],
+      "materials": ["Glass beads", "Thread", "Leather"],
+      "verified": true
+    },
+    {
+      "id": "mbari-art",
+      "name": "Mbari Art",
+      "culture": "igbo",
+      "medium": "Sculpture/Architecture",
+      "description": "Elaborate mud structures with carved figures. Mbari houses are sacred spaces built to honor deities.",
+      "techniques": ["Mud modeling", "Carving"],
+      "materials": ["Clay", "Mud", "Natural pigments"],
+      "source": "UNESCO Intangible Cultural Heritage",
+      "verified": true
+    },
+    {
+      "id": "uli-art",
+      "name": "Uli Art",
+      "culture": "igbo",
+      "medium": "Body/Wall Decoration",
+      "description": "Geometric patterns using natural dyes. Uli is used for body decoration and wall painting.",
+      "techniques": ["Hand-painting"],
+      "materials": ["Natural plant dyes", "Charcoal"],
+      "verified": true
+    },
+    {
+      "id": "hausa-textiles",
+      "name": "Hausa Textiles",
+      "culture": "hausa",
+      "medium": "Textile",
+      "description": "Indigo-dyed cloth with traditional patterns. Hausa textiles are renowned for their quality and design.",
+      "techniques": ["Indigo dyeing", "Weaving"],
+      "materials": ["Indigo dye", "Cotton thread"],
+      "verified": true
+    }
+  ],
+  "traditions": [
+    {
+      "id": "yoruba-masquerade",
+      "name": "Yoruba Masquerade",
+      "culture": "yoruba",
+      "category": "Performance",
+      "description": "Sacred masked performances with spiritual significance. Masquerades are used for spiritual communication and community bonding.",
+      "significance": "Spiritual communication, ancestral veneration, community bonding",
+      "practices": ["Elaborate costumes", "Rhythmic dancing", "Storytelling"]
+    },
+    {
+      "id": "naming-ceremony",
+      "name": "Naming Ceremony",
+      "culture": "yoruba",
+      "category": "Ceremony",
+      "description": "Formal naming of newborns with cultural significance. The ceremony establishes the child's identity and connection to ancestors.",
+      "significance": "Establishing child's identity and connection to ancestors",
+      "practices": ["Ritual prayers", "Family gathering", "Gift exchange"]
+    },
+    {
+      "id": "igbo-masquerade",
+      "name": "Igbo Masquerade",
+      "culture": "igbo",
+      "category": "Performance",
+      "description": "Elaborate masked performances with cultural narratives. Used for entertainment and social commentary.",
+      "significance": "Entertainment, spiritual protection, social commentary",
+      "practices": ["Masked performances", "Dancing", "Storytelling"]
+    },
+    {
+      "id": "bride-price",
+      "name": "Bride Price",
+      "culture": "igbo",
+      "category": "Ceremony",
+      "description": "Traditional marriage negotiation and gift exchange. Establishes family bonds and social status.",
+      "significance": "Establishing family bonds and social status",
+      "practices": ["Family negotiation", "Gift exchange", "Celebration"]
+    }
+  ],
+  "languages": [
+    {
+      "id": "yoruba-lang",
+      "name": "Yoruba",
+      "culture": "yoruba",
+      "speakers": "Millions",
+      "description": "Tonal language with complex grammar. Yoruba is spoken by millions across West Africa.",
+      "characteristics": ["Tonal language", "Niger-Congo family", "Multiple dialects"]
+    },
+    {
+      "id": "igbo-lang",
+      "name": "Igbo",
+      "culture": "igbo",
+      "speakers": "Millions",
+      "description": "Niger-Congo language with multiple dialects. Igbo is spoken primarily in Southeast Nigeria.",
+      "characteristics": ["Niger-Congo family", "Multiple dialects", "Tonal elements"]
+    },
+    {
+      "id": "hausa-lang",
+      "name": "Hausa",
+      "culture": "hausa",
+      "speakers": "Millions",
+      "description": "Afro-Asiatic language widely spoken in West Africa. Hausa is a lingua franca in the region.",
+      "characteristics": ["Afro-Asiatic family", "Lingua franca", "Written script"]
+    }
+  ],
+  "proverbs": [
+    {
+      "id": "yoruba-proverb-1",
+      "text": "A single hand cannot tie a bundle",
+      "culture": "yoruba",
+      "meaning": "Cooperation and unity are essential for success"
+    },
+    {
+      "id": "yoruba-proverb-2",
+      "text": "The lizard that jumped from the high Iroko tree to the ground said he would praise himself if no one else did",
+      "culture": "yoruba",
+      "meaning": "Self-reliance and confidence in one's abilities"
+    },
+    {
+      "id": "igbo-proverb-1",
+      "text": "A single hand cannot tie a bundle",
+      "culture": "igbo",
+      "meaning": "Unity brings strength"
+    },
+    {
+      "id": "hausa-proverb-1",
+      "text": "The dog that trots about finds a bone",
+      "culture": "hausa",
+      "meaning": "Effort and persistence lead to success"
+    }
+  ]
+}
+

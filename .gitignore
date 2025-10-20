@@ -1,0 +1,98 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Node.js / Frontend
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+.env.local
+.env.*.local
+
+# Lock files (optional - uncomment if you want to commit them)
+# package-lock.json
+# bun.lockb
+
+# Environment variables
+.env
+.env.development
+.env.production
+.env.test
+
+# OS
+.DS_Store
+Thumbs.db
+.gitkeep
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Qdrant (Vector DB)
+qdrant_storage/
+.qdrant/
+
+# MeTTa
+*.metta.bak
+*.metta.tmp
+
+# API Keys and Secrets
+secrets.json
+config.local.json
+
