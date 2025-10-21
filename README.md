@@ -12,13 +12,11 @@ Production-ready MVP with full frontend-backend integration, real AI stack imple
 
 ### Key Capabilities
 
-- Semantic search with ASI:One embeddings
 - Knowledge graph reasoning with MeTTa
 - Intelligent response generation with ASI:One LLM
 - Interactive artifact exploration with Mapbox integration
 - Real-time chat interface with Heritage Keeper agent
 - Web enrichment for cultural data
-- Responsive dark mode interface
 
 ## Project Structure
 
