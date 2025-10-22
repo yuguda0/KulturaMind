@@ -11,8 +11,8 @@ AGI + Cultural Memory Theme
    ANIMATIONS - AGI + Cultural Memory Theme
    ============================================ */
 
-/* Floating animation for markers */
-.floating-artifact-marker {
+/* Modern Artifact Marker Styles */
+.modern-artifact-marker {
   animation: float 3s ease-in-out infinite;
 }
 
@@ -22,19 +22,154 @@ AGI + Cultural Memory Theme
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 
-/* Glow effect for markers */
-.floating-artifact-marker img {
-  border: 3px solid hsl(var(--heritage-gold));
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+/* Location Pin Container */
+.artifact-pin {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: bottom center;
 }
 
-.floating-artifact-marker:hover {
+/* Pin Icon Styling - Adaptive to light/dark mode */
+.artifact-pin-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsl(var(--primary) / 0.2);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 50%;
+  border: 2px solid hsl(var(--primary) / 0.6);
+  box-shadow:
+    0 4px 16px hsl(var(--primary) / 0.3),
+    0 0 0 1px hsl(var(--primary) / 0.1),
+    inset 0 1px 0 hsl(var(--primary) / 0.2);
+  color: hsl(var(--primary));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.artifact-pin-icon svg {
+  filter: drop-shadow(0 2px 4px hsl(var(--primary) / 0.4));
+}
+
+/* Info Card - Hidden by default, shows on hover - Light/Dark mode adaptive */
+.artifact-info-card {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background: hsl(var(--card) / 0.95);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: 8px;
+  padding: 6px 10px;
+  min-width: 100px;
+  max-width: 140px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 8px 24px hsl(var(--foreground) / 0.1),
+    0 0 0 1px hsl(var(--border) / 0.3),
+    inset 0 1px 0 hsl(var(--foreground) / 0.05);
+  z-index: 10;
+}
+
+/* Subtle shine effect */
+.artifact-info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 100%
+  );
+  border-radius: 8px 8px 0 0;
+  pointer-events: none;
+}
+
+/* Title Styling - Light/Dark mode adaptive */
+.artifact-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  text-align: center;
+  line-height: 1.3;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-shadow: 0 1px 3px hsl(var(--background) / 0.5);
+  letter-spacing: 0.2px;
+  margin-bottom: 2px;
+}
+
+/* Location Styling - Light/Dark mode adaptive */
+.artifact-location {
+  font-size: 8px;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px hsl(var(--background) / 0.4);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* Hover Effects */
+.modern-artifact-marker:hover {
   animation-duration: 1.5s;
+}
+
+.artifact-pin:hover .artifact-pin-icon {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .artifact-pin-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .artifact-info-card {
+    min-width: 90px;
+    max-width: 120px;
+    padding: 5px 8px;
+  }
+
+  .artifact-title {
+    font-size: 9px;
+  }
+
+  .artifact-location {
+    font-size: 7px;
+  }
 }
 
 /* AGI Neural Network Animation */
@@ -414,5 +549,103 @@ AGI + Cultural Memory Theme
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================
+   MOBILE-FIRST RESPONSIVE DESIGN
+   ============================================ */
+
+/* Touch-friendly tap targets */
+@media (max-width: 768px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Larger text for readability */
+  body {
+    font-size: 16px;
+  }
+
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px;
+  }
+
+  /* Full-width cards on mobile */
+  .card {
+    border-radius: 0.5rem;
+  }
+
+  /* Stack tabs vertically on small screens */
+  [role="tablist"] {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* Optimize spacing */
+  .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 0.75rem;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grid-cols-1.md\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 1024px) {
+  .grid-cols-1.lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-cols-1.lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 0 0% 30%;
+  }
+
+  .dark {
+    --border: 0 0% 70%;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
   }
 }

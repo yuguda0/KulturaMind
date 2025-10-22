@@ -1,12 +1,13 @@
 """
 RAG Pipeline - Retrieval-Augmented Generation
 Combines vector search, knowledge graph reasoning, and LLM generation
+Uses ASI Cloud Compute for BGI25 Hackathon
 """
 
 import logging
 from typing import List, Dict, Any, Optional
 from vector_db import VectorDatabase, load_cultural_data_to_vectors
-from llm_engine import ASIOneLLM
+from llm_engine import ASICloudLLM
 from metta_reasoning import MeTTaReasoningEngine
 
 logger = logging.getLogger(__name__)
@@ -18,10 +19,10 @@ class RAGPipeline:
     Retrieves relevant context and generates intelligent responses
     """
 
-    def __init__(self, vector_db: Optional[VectorDatabase] = None, llm: Optional[ASIOneLLM] = None):
+    def __init__(self, vector_db: Optional[VectorDatabase] = None, llm: Optional[ASICloudLLM] = None):
         """
         Initialize RAG pipeline
-        
+
         Args:
             vector_db: Vector database instance (creates if None)
             llm: LLM instance (creates if None)
@@ -32,23 +33,23 @@ class RAGPipeline:
             self.vector_db = load_cultural_data_to_vectors()
         else:
             self.vector_db = vector_db
-        
+
         # Initialize LLM
         if llm is None:
-            logger.info("Initializing LLM...")
+            logger.info("Initializing ASI Cloud LLM...")
             try:
-                self.llm = ASIOneLLM()
+                self.llm = ASICloudLLM()
             except ValueError as e:
                 logger.warning(f"LLM initialization failed: {e}")
                 self.llm = None
         else:
             self.llm = llm
-        
+
         # Initialize MeTTa reasoning
         logger.info("Initializing MeTTa reasoning...")
         self.reasoning_engine = MeTTaReasoningEngine()
-        
-        logger.info("✓ RAG Pipeline initialized")
+
+        logger.info("✓ RAG Pipeline initialized with ASI Cloud")
 
     def query(
         self,

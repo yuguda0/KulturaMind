@@ -1,11 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Artifact } from "@/services/api";
 import { apiClient } from "@/services/api";
+import MapSearch from "./MapSearch";
 
 interface MapViewProps {
   onArtifactClick: (artifact: Artifact) => void;
+}
+
+interface SearchableItem {
+  id: string;
+  name: string;
+  type: 'artifact' | 'culture' | 'location';
+  culture?: string;
+  location?: string;
+  coordinates?: [number, number];
+  artifact?: Artifact;
 }
 
 const MapView = ({ onArtifactClick }: MapViewProps) => {
@@ -17,6 +28,36 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
 
   // Calculate unique cultures from artifacts
   const uniqueCultures = new Set(artifacts.map(a => a.culture).filter(Boolean));
+
+  // Handle search result selection - pan and zoom to location
+  const handleSearchResultSelect = useCallback((item: SearchableItem) => {
+    if (!map.current || !item.coordinates) return;
+
+    // Determine zoom level based on search type
+    let zoomLevel = 10; // Default zoom for artifacts
+    if (item.type === 'culture') {
+      zoomLevel = 7; // Wider view for cultures
+    } else if (item.type === 'location') {
+      zoomLevel = 9; // Medium view for locations
+    }
+
+    // Fly to the selected location with smooth animation
+    map.current.flyTo({
+      center: item.coordinates,
+      zoom: zoomLevel,
+      pitch: 45,
+      bearing: 0,
+      duration: 2000, // 2 second animation
+      essential: true, // This animation is considered essential with respect to prefers-reduced-motion
+    });
+
+    // If it's an artifact, also trigger the artifact click after animation
+    if (item.type === 'artifact' && item.artifact) {
+      setTimeout(() => {
+        onArtifactClick(item.artifact!);
+      }, 2100); // Slightly after the animation completes
+    }
+  }, [onArtifactClick]);
 
   // Mock artifacts for development
   const mockArtifacts: Artifact[] = [
@@ -157,10 +198,8 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
 
       map.current?.setTerrain({ source: "mapbox-dem", exaggeration: 1 });
 
-      // Add artifacts as floating image markers
+      // Add artifacts as modern glassmorphism card markers
       const isMobileView = window.innerWidth < 768;
-      const markerSize = isMobileView ? 60 : 80;
-      const shadowWidth = isMobileView ? 30 : 40;
 
       artifacts.forEach((artifact) => {
         // Create wrapper element
@@ -168,75 +207,72 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
         wrapperEl.className = "marker-wrapper";
         wrapperEl.style.cursor = "pointer";
 
-        // Create the floating image marker
+        // Create the modern pin marker
         const markerEl = document.createElement("div");
-        markerEl.className = "floating-artifact-marker";
+        markerEl.className = "modern-artifact-marker";
 
-        // Create image element
-        const imgEl = document.createElement("img");
-        imgEl.src = artifact.imageUrl; // Make sure your Artifact type has imageUrl
-        imgEl.alt = artifact.name;
-        imgEl.style.width = "100%";
-        imgEl.style.height = "100%";
-        imgEl.style.objectFit = "cover";
-        imgEl.style.borderRadius = "12px";
+        // Create pin container
+        const pinEl = document.createElement("div");
+        pinEl.className = "artifact-pin";
 
-        // Create floating effect container
-        const floatContainer = document.createElement("div");
-        floatContainer.className = "float-container";
-        floatContainer.style.width = `${markerSize}px`;
-        floatContainer.style.height = `${markerSize}px`;
-        floatContainer.style.position = "relative";
-        floatContainer.style.transition = "all 0.3s ease";
+        // Create location icon (SVG)
+        const iconEl = document.createElement("div");
+        iconEl.className = "artifact-pin-icon";
+        iconEl.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                  fill="currentColor"/>
+          </svg>
+        `;
 
-        // Add shadow element for floating effect
-        const shadowEl = document.createElement("div");
-        shadowEl.className = "floating-shadow";
-        shadowEl.style.position = "absolute";
-        shadowEl.style.bottom = "-10px";
-        shadowEl.style.left = "50%";
-        shadowEl.style.transform = "translateX(-50%)";
-        shadowEl.style.width = `${shadowWidth}px`;
-        shadowEl.style.height = "8px";
-        shadowEl.style.backgroundColor = "rgba(0,0,0,0.2)";
-        shadowEl.style.borderRadius = "50%";
-        shadowEl.style.filter = "blur(4px)";
-        shadowEl.style.transition = "all 0.3s ease";
+        // Create info card (appears on hover)
+        const infoCard = document.createElement("div");
+        infoCard.className = "artifact-info-card";
+
+        // Create title
+        const titleEl = document.createElement("div");
+        titleEl.className = "artifact-title";
+        titleEl.textContent = artifact.name;
+
+        // Create location subtitle
+        const locationEl = document.createElement("div");
+        locationEl.className = "artifact-location";
+        locationEl.textContent = artifact.location;
 
         // Assemble the marker
-        floatContainer.appendChild(imgEl);
-        floatContainer.appendChild(shadowEl);
-        markerEl.appendChild(floatContainer);
+        infoCard.appendChild(titleEl);
+        infoCard.appendChild(locationEl);
+        pinEl.appendChild(iconEl);
+        pinEl.appendChild(infoCard);
+        markerEl.appendChild(pinEl);
         wrapperEl.appendChild(markerEl);
 
         // Add hover effects (desktop)
         wrapperEl.addEventListener("mouseenter", () => {
-          floatContainer.style.transform = "scale(1.2) translateY(-5px)";
-          shadowEl.style.width = `${shadowWidth + 10}px`;
-          shadowEl.style.filter = "blur(6px)";
-          shadowEl.style.backgroundColor = "rgba(0,0,0,0.3)";
+          pinEl.style.transform = "scale(1.15) translateY(-3px)";
+          infoCard.style.opacity = "1";
+          infoCard.style.transform = "translateY(0)";
         });
 
         wrapperEl.addEventListener("mouseleave", () => {
-          floatContainer.style.transform = "scale(1) translateY(0)";
-          shadowEl.style.width = `${shadowWidth}px`;
-          shadowEl.style.filter = "blur(4px)";
-          shadowEl.style.backgroundColor = "rgba(0,0,0,0.2)";
+          pinEl.style.transform = "scale(1) translateY(0)";
+          infoCard.style.opacity = "0";
+          infoCard.style.transform = "translateY(-5px)";
         });
 
         // Add touch effects (mobile)
         wrapperEl.addEventListener("touchstart", () => {
-          floatContainer.style.transform = "scale(1.15) translateY(-3px)";
-          shadowEl.style.width = `${shadowWidth + 8}px`;
-          shadowEl.style.filter = "blur(5px)";
-          shadowEl.style.backgroundColor = "rgba(0,0,0,0.25)";
+          pinEl.style.transform = "scale(1.12) translateY(-2px)";
+          infoCard.style.opacity = "1";
+          infoCard.style.transform = "translateY(0)";
         });
 
         wrapperEl.addEventListener("touchend", () => {
-          floatContainer.style.transform = "scale(1) translateY(0)";
-          shadowEl.style.width = `${shadowWidth}px`;
-          shadowEl.style.filter = "blur(4px)";
-          shadowEl.style.backgroundColor = "rgba(0,0,0,0.2)";
+          setTimeout(() => {
+            pinEl.style.transform = "scale(1) translateY(0)";
+            infoCard.style.opacity = "0";
+            infoCard.style.transform = "translateY(-5px)";
+          }, 2000);
         });
 
         // Add click handler
@@ -268,8 +304,31 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
     <div className="relative w-full h-screen">
       <div ref={mapContainer} className="absolute inset-0" />
 
-      {/* Legend - Hidden on small mobile, shown on tablet+ */}
-      <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 bg-card/80 backdrop-blur-md px-3 sm:px-6 py-3 sm:py-4 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-shadow duration-300 animate-slide-up animation-delay-200 hidden sm:block">
+      {/* Search Bar - Positioned at top left */}
+      <div className="absolute top-16 sm:top-20 left-3 sm:left-4 z-10 w-[calc(100%-1.5rem)] sm:w-[400px] animate-slide-up">
+        <MapSearch onResultSelect={handleSearchResultSelect} />
+      </div>
+
+      {/* Floating Stats Card - Moved to left side, below search */}
+      <div className="absolute top-[140px] sm:top-[150px] left-3 sm:left-4 bg-card/80 backdrop-blur-md px-3 sm:px-6 py-3 sm:py-4 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-shadow duration-300 animate-slide-up animation-delay-100">
+        <div className="grid grid-cols-3 gap-2 sm:gap-6">
+          <div className="text-center">
+            <p className="text-lg sm:text-2xl font-bold text-accent">{artifacts.length}</p>
+            <p className="text-xs text-muted-foreground">Artifacts</p>
+          </div>
+          <div className="text-center border-l border-r border-border/30">
+            <p className="text-lg sm:text-2xl font-bold text-secondary">{uniqueCultures.size}</p>
+            <p className="text-xs text-muted-foreground">Cultures</p>
+          </div>
+          <div className="text-center">
+            <p className="text-lg sm:text-2xl font-bold text-primary">∞</p>
+            <p className="text-xs text-muted-foreground">Stories</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Legend - Moved higher to avoid zoom controls */}
+      <div className="absolute bottom-20 sm:bottom-24 left-3 sm:left-4 bg-card/80 backdrop-blur-md px-3 sm:px-6 py-3 sm:py-4 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-shadow duration-300 animate-slide-up animation-delay-200 hidden sm:block">
         <div className="space-y-2 sm:space-y-3">
           <h3 className="font-semibold text-foreground text-xs sm:text-sm">Explore</h3>
           <div className="space-y-1 sm:space-y-2">
@@ -285,24 +344,6 @@ const MapView = ({ onArtifactClick }: MapViewProps) => {
               <span className="text-base sm:text-lg">🌍</span>
               <span className="text-xs sm:text-sm text-muted-foreground">Discover stories</span>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating Stats Card - Responsive sizing */}
-      <div className="absolute top-16 sm:top-20 right-3 sm:right-4 bg-card/80 backdrop-blur-md px-3 sm:px-6 py-3 sm:py-4 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-shadow duration-300 animate-slide-up animation-delay-100">
-        <div className="grid grid-cols-3 gap-2 sm:gap-6">
-          <div className="text-center">
-            <p className="text-lg sm:text-2xl font-bold text-accent">{artifacts.length}</p>
-            <p className="text-xs text-muted-foreground">Artifacts</p>
-          </div>
-          <div className="text-center border-l border-r border-border/30">
-            <p className="text-lg sm:text-2xl font-bold text-secondary">{uniqueCultures.size}</p>
-            <p className="text-xs text-muted-foreground">Cultures</p>
-          </div>
-          <div className="text-center">
-            <p className="text-lg sm:text-2xl font-bold text-primary">∞</p>
-            <p className="text-xs text-muted-foreground">Stories</p>
           </div>
         </div>
       </div>

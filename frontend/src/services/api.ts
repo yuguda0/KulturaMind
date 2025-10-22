@@ -3,7 +3,7 @@
  * Handles all communication with the FastAPI backend
  */
 
-const API_BASE_URL = 'https://kulturamind-api.onrender.com';
+const API_BASE_URL = 'http://localhost:8000';
 
 export interface SearchResult {
   id: string;
@@ -36,6 +36,7 @@ export interface Artifact {
   significance: string;
   culturalContext: string;
   culture: string;
+  imageUrl?: string;
   web_context?: Record<string, any>;
   related_items?: Array<Record<string, any>>;
 }
@@ -289,6 +290,37 @@ class APIClient {
       }
     } catch (error) {
       console.error('Stream error:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Generic GET request
+   */
+  async get(endpoint: string): Promise<any> {
+    try {
+      const url = endpoint.startsWith('http') ? endpoint : `${this.baseUrl}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
+      const response = await this.fetchWithTimeout(url);
+      if (!response.ok) {
+        throw new Error(`GET ${endpoint} failed: ${response.statusText}`);
+      }
+      return await response.json();
+    } catch (error) {
+      console.error(`GET ${endpoint} error:`, error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get impact metrics
+   */
+  async getImpactMetrics(): Promise<any> {
+    try {
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/api/metrics/impact`);
+      if (!response.ok) throw new Error('Failed to fetch impact metrics');
+      return await response.json();
+    } catch (error) {
+      console.error('Impact metrics fetch error:', error);
       throw error;
     }
   }

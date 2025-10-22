@@ -54,8 +54,12 @@ const Header = ({ onThemeToggle }: HeaderProps) => {
           <div className="flex items-center gap-2 sm:gap-3 group cursor-pointer min-w-0">
             <div className="relative flex-shrink-0">
               <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary rounded-lg blur opacity-50 group-hover:opacity-75 transition duration-300"></div>
-              <div className="relative bg-card px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg">
-                <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
+              <div className="relative bg-card rounded-lg overflow-hidden">
+                <img
+                  src="/logo.png"
+                  alt="KulturaMind Logo"
+                  className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                />
               </div>
             </div>
             <div className="flex flex-col min-w-0">

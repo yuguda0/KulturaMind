@@ -1,411 +1,351 @@
-# KulturaMind - Interactive Cultural Heritage Platform
+# 🌍 KulturaMind - Decentralized AGI for African Cultural Heritage
 
-A modern web application for exploring African cultural artifacts with AI-powered storytelling and semantic search capabilities. KulturaMind combines a production-grade AI stack with an intuitive user interface to provide intelligent access to verified cultural heritage information.
+> **Preserving African Heritage Through Decentralized Artificial General Intelligence**
 
-## Overview
+[![BGI25 Hackathon](https://img.shields.io/badge/BGI25-Hackathon-purple)](https://bgi25.ai)
+[![ASI Cloud](https://img.shields.io/badge/ASI-Cloud%20Compute-blue)](https://asi.cloud)
+[![Fetch.AI](https://img.shields.io/badge/Fetch.AI-Agentverse-green)](https://fetch.ai)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-KulturaMind is an intelligent cultural heritage platform that leverages advanced AI technologies to provide semantic search, knowledge graph reasoning, and context-aware responses about African cultures. The platform covers diverse African cultures across the continent including West African cultures (Yoruba, Igbo, Hausa, Edo, Fulani, Ijaw, Kanuri, Tiv, Efik, Ibibio, Akan), East African cultures (Maasai, Amhara), Southern African cultures (Zulu, Xhosa), and North African cultures (Berber). Each culture includes verified data on festivals, art forms, traditions, languages, and proverbs.
+---
 
-### Status
+## 📖 Overview
 
-Production-ready MVP with full frontend-backend integration, real AI stack implementation, and comprehensive cultural knowledge base.
+**KulturaMind** is a groundbreaking decentralized AGI platform that preserves and shares African cultural heritage through:
 
-### Key Capabilities
+- 🤖 **Multi-Agent System**: 5 specialized AI agents working collaboratively
+- 🌐 **Decentralized Architecture**: Deployed on Fetch.AI Agentverse
+- 🧠 **Knowledge Graph**: MeTTa-powered reasoning over cultural data
+- 🗣️ **Multilingual Support**: 8 African languages supported
+- 👥 **Community-Driven**: Token-incentivized contributions and expert validation
+- 📱 **Mobile-First**: Accessible design for global south users
+- 🎤 **Voice Interface**: Support for low-literacy communities
 
-- Knowledge graph reasoning with MeTTa
-- Intelligent response generation with ASI:One LLM
-- Interactive artifact exploration with Mapbox integration
-- Real-time chat interface with Heritage Keeper agent
-- Web enrichment for cultural data
+---
 
-## Project Structure
+## 🎯 BGI25 Hackathon Theme Alignment
 
-```
-KulturaMind/
-├── backend/
-│   ├── api.py                      # FastAPI REST API server
-│   ├── agent.py                    # Fetch.ai uAgent implementation
-│   ├── rag_pipeline.py             # RAG pipeline orchestration
-│   ├── llm_engine.py               # ASI:One LLM integration
-│   ├── metta_reasoning.py          # MeTTa knowledge graph reasoning
-│   ├── vector_db.py                # Qdrant vector database client
-│   ├── web_agent.py                # Web enrichment agent
-│   ├── cultural_data.json          # Cultural knowledge base
-│   ├── cultural_knowledge_base.metta # MeTTa predicates reference
-│   ├── requirements.txt            # Python dependencies
-│   └── wsgi.py                     # WSGI configuration
-├── frontend/
-│   ├── src/
-│   │   ├── components/             # React components
-│   │   ├── pages/                  # Page components
-│   │   ├── services/               # API client services
-│   │   └── App.tsx                 # Main application
-│   ├── package.json                # Node dependencies
-│   ├── vite.config.ts              # Vite configuration
-│   └── tailwind.config.ts          # Tailwind CSS configuration
-└── README.md                       # This file
-```
+**Theme**: *"AGI + Cultural Memory - Decentralized AGI for All"*
 
-## Technology Stack
+### How KulturaMind Addresses the Theme:
 
-### Backend
-- **FastAPI**: REST API framework with async support
-- **ASI:One**: LLM for intelligent response generation
-- **MeTTa**: Knowledge graph and reasoning engine
-- **Qdrant**: Vector database for semantic search
-- **Fetch.ai uAgents**: Agent framework for autonomous operations
-- **Pydantic**: Data validation and serialization
+#### 1. **Decentralized AGI** ✅
+- Multi-agent system with 5 specialized agents
+- Deployed on Fetch.AI Agentverse for global accessibility
+- Inter-agent communication protocols
+- Community governance through smart contracts
 
-### Frontend
-- **React 18**: UI framework
-- **TypeScript**: Type-safe development
-- **Vite**: Build tool and dev server
-- **Tailwind CSS**: Utility-first CSS framework
-- **Mapbox GL**: Interactive map visualization
-- **Radix UI**: Accessible component library
-- **React Query**: Server state management
+#### 2. **Cultural Memory Preservation** ✅
+- 16+ African cultures documented
+- 160+ verified cultural items
+- MeTTa knowledge graph for cultural reasoning
+- UNESCO-sourced data with expert validation
 
-## Getting Started
+#### 3. **AGI for All** ✅
+- Multilingual support (8 languages)
+- Mobile-first design for accessibility
+- Voice interface for low-literacy users
+- Free and open access
+- Token incentives for community contributions
 
-### Prerequisites
+#### 4. **ASI Cloud Compute** ✅
+- Google Gemma 27B model integration
+- Production-grade AI stack
+- Real-time semantic search
+- RAG pipeline for accurate responses
 
-- Python 3.9+
+---
+
+## 🏗️ Architecture
+
+### **Multi-Agent System**
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│                    Coordinator Agent                         │
+│                      (Port 8000)                             │
+│              Multi-agent orchestration                       │
+└──────────────┬──────────────────────────────────────────────┘
+               │
+       ┌───────┴───────┬───────────┬───────────┬──────────┐
+       │               │           │           │          │
+┌──────▼──────┐ ┌─────▼─────┐ ┌──▼────┐ ┌────▼────┐ ┌──▼──────┐
+│  Heritage   │ │ Research  │ │Verify │ │Translate│ │Community│
+│   Keeper    │ │   Agent   │ │ Agent │ │ Agent   │ │ System  │
+│ (Port 8001) │ │(Port 8002)│ │(8003) │ │ (8004)  │ │         │
+│             │ │           │ │       │ │         │ │         │
+│ Knowledge   │ │    Web    │ │ Fact  │ │   8     │ │  Token  │
+│   Base      │ │Enrichment │ │Check  │ │Languages│ │Incentive│
+└─────────────┘ └───────────┘ └───────┘ └─────────┘ └─────────┘
+\`\`\`
+
+### **Technology Stack**
+
+#### **Backend**
+- **Framework**: FastAPI (Python 3.10+)
+- **LLM**: ASI Cloud Compute (Google Gemma 27B)
+- **Vector DB**: Qdrant (semantic search)
+- **Knowledge Graph**: MeTTa (reasoning engine)
+- **Multi-Agent**: Fetch.AI uAgents
+- **Web Enrichment**: Wikipedia API + BeautifulSoup
+
+#### **Frontend**
+- **Framework**: React + TypeScript
+- **UI**: Tailwind CSS + shadcn/ui
+- **3D Visualization**: Canvas API
+- **State Management**: React Hooks
+
+#### **Blockchain**
+- **Network**: Fetch.AI Mainnet
+- **Token**: FET (for rewards)
+- **Smart Contracts**: CosmWasm
+
+---
+
+## 🚀 Quick Start
+
+### **Prerequisites**
+- Python 3.10+
 - Node.js 18+
-- npm or yarn package manager
+- Git
 
-### Backend Setup
+### **1. Clone Repository**
+\`\`\`bash
+git clone https://github.com/yourusername/KulturaMind.git
+cd KulturaMind
+\`\`\`
 
-```bash
+### **2. Backend Setup**
+\`\`\`bash
 cd backend
-python -m venv venv
+
+# Create virtual environment
+python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
-```
 
-Configure environment variables in `.env`:
-```
-ASI_ONE_API_KEY=your_api_key
-ASI_ONE_BASE_URL=https://api.asi.one
-QDRANT_URL=http://localhost:6333
-```
+# Configure environment
+cp .env.example .env
+# Edit .env with your ASI Cloud API key
 
-Start the backend server:
-```bash
-python api.py
-```
+# Start backend
+python3 api.py
+\`\`\`
 
-The API will be available at `http://localhost:8000`
+Backend will run on \`http://localhost:8000\`
 
-### Frontend Setup
-
-```bash
+### **3. Frontend Setup**
+\`\`\`bash
 cd frontend
+
+# Install dependencies
 npm install
+
+# Start development server
 npm run dev
-```
+\`\`\`
 
-The frontend will be available at `http://localhost:5173`
+Frontend will run on \`http://localhost:8081\`
 
-### Running Both Services
+### **4. Access Application**
+Open your browser to \`http://localhost:8081\`
 
-Use the provided startup scripts:
+---
 
-**Linux/Mac:**
-```bash
-./start-dev.sh
-```
+## 🌟 Key Features
 
-**Windows:**
-```bash
-start-dev.bat
-```
+### **1. Multi-Agent Collaboration**
+- **Coordinator**: Routes queries to appropriate agents
+- **Heritage Keeper**: Queries cultural knowledge base
+- **Research Agent**: Enriches with web data
+- **Verification Agent**: Fact-checks information
+- **Translation Agent**: Supports 8 languages
 
-## API Endpoints
+### **2. Community Contribution System**
+- Submit new cultural artifacts
+- Expert validation workflow
+- Token rewards for contributions
+- Decentralized knowledge curation
 
-### Cultural Data Queries
+### **3. Impact Metrics**
+- Cultures preserved count
+- Queries answered
+- Community engagement metrics
+- Knowledge graph growth
+- Global south reach tracking
 
-- `GET /api/cultures` - List all cultures
-- `GET /api/cultures/{id}` - Get culture details
-- `GET /api/festivals?culture=` - Get festivals by culture
-- `GET /api/art-forms?culture=` - Get art forms by culture
-- `GET /api/traditions?culture=` - Get traditions by culture
-- `GET /api/search?q=` - Semantic search across knowledge base
+### **4. Accessibility**
+- **Mobile-First**: Responsive design for all devices
+- **Voice Interface**: Speech-to-text for queries
+- **Multilingual**: English, French, Swahili, Hausa, Yoruba, Igbo, Zulu, Amharic
+- **Low-Literacy Support**: Visual and audio cues
 
-### Chat Interface
+---
 
-- `POST /api/chat` - Send message to Heritage Keeper agent
-- `GET /api/chat/history` - Retrieve chat history
-- `POST /api/chat/stream` - Stream responses in real-time
+## 📊 API Endpoints
 
-## Knowledge Base
+### **Chat & Query**
+- \`POST /api/chat\` - Send chat message
+- \`POST /api/chat/multi-agent\` - Multi-agent query processing
+- \`POST /api/chat/stream\` - Streaming chat response
 
-The platform includes comprehensive verified cultural data for 16+ African cultures:
+### **Multi-Agent System**
+- \`GET /api/agents\` - Get agent information
+- \`GET /api/languages\` - Get supported languages
 
-**West African Cultures**: Yoruba, Igbo, Hausa, Edo, Fulani, Ijaw, Kanuri, Tiv, Efik, Ibibio, Akan
+### **Community Contributions**
+- \`POST /api/community/contribute\` - Submit contribution
+- \`POST /api/community/register-expert\` - Register as expert
+- \`POST /api/community/review\` - Submit expert review
+- \`GET /api/community/pending\` - Get pending contributions
+- \`GET /api/community/stats\` - Get contribution statistics
 
-**East African Cultures**: Maasai, Amhara
+### **Metrics & Impact**
+- \`GET /api/metrics\` - Get usage metrics
+- \`GET /api/metrics/impact\` - Get impact summary
 
-**Southern African Cultures**: Zulu, Xhosa
+### **Health**
+- \`GET /health\` - Health check
 
-**North African Cultures**: Berber
+---
 
-**Content Categories** (for each culture):
-- Festivals and celebrations
-- Art forms and crafts
-- Traditions and customs
-- Languages and communication
-- Proverbs and wisdom
+## 🎨 Supported Cultures
 
-**Data Coverage**: 50+ festivals, 30+ art forms, 40+ traditions, 16+ languages, 40+ proverbs
+- **West Africa**: Yoruba, Igbo, Hausa, Edo, Fulani, Ijaw, Kanuri, Tiv, Efik, Ibibio, Akan
+- **East Africa**: Maasai
+- **North Africa**: Berber
+- **Southern Africa**: Zulu, Xhosa
+- **Horn of Africa**: Amhara
 
-**Data Sources**: UNESCO archives, cultural institutions, verified heritage databases, academic research
+---
 
-## Architecture
+## 🗣️ Supported Languages
 
-### RAG Pipeline
+1. **English** (en)
+2. **French** (fr)
+3. **Swahili** (sw)
+4. **Hausa** (ha)
+5. **Yoruba** (yo)
+6. **Igbo** (ig)
+7. **Zulu** (zu)
+8. **Amharic** (am)
 
-The Retrieval-Augmented Generation pipeline combines:
+---
 
-1. **Vector Search**: Semantic retrieval using ASI:One embeddings (top_k=10 for comprehensive context)
-2. **Semantic Filtering**: LLM-based relevance filtering
-3. **Knowledge Graph Reasoning**: MeTTa inference for relationship discovery
-4. **Web Enrichment**: Mandatory Wikipedia and web source integration for enriched responses
-5. **Response Generation**: ASI:One LLM generates contextual responses (max_tokens=800 for detailed answers)
+## 💰 Token Economics
 
-**Response Quality Improvements**:
-- Increased context window (top_k=10) for more comprehensive information retrieval
-- Mandatory web enrichment ensures responses are grounded in verified sources
-- Enhanced system prompt ensures informative responses without "I don't know" fallbacks
-- Larger token budget (800 tokens) enables detailed, nuanced explanations
+### **Contribution Rewards** (FET Tokens)
+- New Artifact: **100 FET**
+- Artifact Update: **50 FET**
+- Cultural Context: **75 FET**
+- Translation: **60 FET**
+- Verification: **40 FET**
+- Expert Review: **80 FET**
 
-### Agent Architecture
+### **How to Earn**
+1. Connect Fetch.AI wallet
+2. Submit cultural contributions
+3. Get expert validation
+4. Receive FET token rewards
 
-The Fetch.ai uAgent provides:
-- Autonomous query processing
-- Distributed reasoning capabilities
-- Integration with external data sources
-- Scalable multi-agent coordination
+---
 
-## Development
+## 🌐 Agentverse Deployment
 
-### Running Tests
+Deploy to Fetch.AI Agentverse for global accessibility:
 
-```bash
-# Backend tests
+\`\`\`bash
+# See detailed guide
+cat AGENTVERSE_INTEGRATION_GUIDE.md
+
+# Quick deploy
 cd backend
-pytest
+python3 deploy_to_agentverse.py
+\`\`\`
 
-# Specific test file
-pytest test_asi_one_stack.py
-```
+**Benefits**:
+- Global agent discovery
+- Decentralized hosting
+- Inter-agent communication
+- Community governance
+- Token integration
 
-### Code Quality
+---
 
-```bash
-# Linting (frontend)
-cd frontend
-npm run lint
+## 📈 Impact Metrics
 
-# Type checking
-npm run build
-```
+### **Cultural Preservation**
+- 16+ cultures preserved
+- 160+ cultural items documented
+- 50+ MeTTa reasoning predicates
+- Growing through community contributions
 
-## Deployment
+### **Community Impact**
+- Queries answered: Real-time tracking
+- Countries reached: Global south focus
+- Languages supported: 8 African languages
+- Expert validators: Community-driven
 
-### Backend Deployment
+### **AGI Capabilities**
+- 5 specialized agents
+- Decentralized architecture
+- Multi-agent collaboration
+- Knowledge graph reasoning
 
-The backend is configured for deployment on PythonAnywhere:
+---
 
-```bash
-cd backend
-bash pythonanywhere_setup.sh
-```
+## 🤝 Contributing
 
-### Frontend Deployment
+We welcome contributions from the community!
 
-Deploy to Vercel:
+### **Ways to Contribute**
+1. **Cultural Content**: Submit artifacts, traditions, stories
+2. **Expert Validation**: Review and validate contributions
+3. **Translations**: Add support for more languages
+4. **Code**: Improve agents, UI, or infrastructure
+5. **Documentation**: Enhance guides and tutorials
 
-```bash
-cd frontend
-npm run build
-vercel deploy
-```
+---
 
-## Configuration
+## 📚 Documentation
 
-### Environment Variables
+- **[BGI25 Implementation Complete](BGI25_IMPLEMENTATION_COMPLETE.md)** - Full implementation details
+- **[Agentverse Integration Guide](AGENTVERSE_INTEGRATION_GUIDE.md)** - Deploy to Agentverse
+- **[Frontend UX Fixes](FRONTEND_UX_FIXES.md)** - UI/UX improvements
+- **[API Documentation](http://localhost:8000/docs)** - Interactive API docs
 
-**Backend (.env)**:
-- `ASI_ONE_API_KEY`: API key for ASI:One LLM
-- `ASI_ONE_BASE_URL`: Base URL for ASI:One API
-- `QDRANT_URL`: Qdrant vector database URL
-- `QDRANT_API_KEY`: Qdrant API key (if required)
+---
 
-**Frontend (.env.local)**:
-- `VITE_API_URL`: Backend API base URL
-- `VITE_MAPBOX_TOKEN`: Mapbox GL access token
+## 🏆 Hackathon Highlights
 
-## Performance Optimization
+1. **Real Implementation**: No mocks, production-grade code
+2. **Decentralized AGI**: Multi-agent system on Agentverse
+3. **Cultural Impact**: Preserving 16+ African cultures
+4. **Community-Driven**: Token incentives for contributions
+5. **Accessibility**: Mobile-first, voice interface, 8 languages
+6. **Measurable Impact**: Comprehensive metrics tracking
+7. **Hackathon Compliance**: Uses required ASI Cloud Compute
 
-- Semantic search with vector embeddings for fast retrieval
-- Response caching for frequently asked queries
-- Streaming responses for real-time chat
-- Lazy loading of cultural artifacts
-- CDN delivery for static assets
+---
 
-## Security
+## 📄 License
 
-- CORS middleware for cross-origin requests
-- Input validation with Pydantic
-- Environment-based configuration management
-- Secure API key handling
-- Rate limiting on API endpoints
+MIT License - see [LICENSE](LICENSE) file for details.
 
-## Impact
+---
 
-### Global Impact
+## 🙏 Acknowledgments
 
-KulturaMind addresses the critical challenge of cultural heritage preservation and accessibility in the digital age:
+- **BGI25 Hackathon** - For the opportunity to build beneficial AGI
+- **Fetch.AI** - For the Agentverse platform and uAgents framework
+- **ASI Cloud** - For providing compute infrastructure
+- **UNESCO** - For cultural heritage data
+- **African Communities** - For preserving and sharing their heritage
 
-- **Digital Preservation**: Provides a centralized, searchable platform for African cultural knowledge that might otherwise be lost to digitalization gaps
-- **Educational Access**: Democratizes access to authentic cultural information for students, researchers, and cultural enthusiasts worldwide
-- **Cultural Pride**: Empowers African communities to share and celebrate their heritage on their own terms
-- **AI for Good**: Demonstrates how advanced AI technologies (semantic search, knowledge graphs, LLMs) can serve cultural preservation rather than exploitation
-- **Bridging Knowledge Gaps**: Connects diaspora communities with their cultural roots through intelligent, context-aware information retrieval
+---
 
-### Measurable Outcomes
+**Built with ❤️ for African Cultural Heritage Preservation**
 
-- Provides verified information on 16+ African cultures with 50+ festivals, 30+ art forms, 40+ traditions
-- Enables semantic search across cultural knowledge base with 95%+ relevance accuracy
-- Supports multiple languages and cultural contexts through knowledge graph reasoning
-- Reduces time to find cultural information by 80% compared to traditional research methods
-
-## Local Relevance
-
-### Community-Centric Design
-
-KulturaMind is designed with deep consideration for local African communities:
-
-- **Cultural Accuracy**: All cultural data is verified through academic sources, UNESCO archives, and cultural institutions
-- **Community Representation**: Covers diverse African cultures with equal prominence and respect
-- **Language Support**: Designed to support local languages and cultural terminology
-- **Offline Capability**: Can be deployed locally without internet dependency for community centers and schools
-- **Educational Integration**: Suitable for integration into African educational curricula
-
-### Local Use Cases
-
-1. **Cultural Education**: Schools and universities use KulturaMind to teach African history and culture
-2. **Heritage Documentation**: Communities document and preserve their cultural practices
-3. **Tourism**: Cultural tourism initiatives use the platform to provide authentic cultural context
-4. **Research**: Academics and researchers access verified cultural data for scholarly work
-5. **Community Centers**: Public libraries and community centers provide access to cultural knowledge
-
-### Regional Deployment
-
-The platform can be deployed regionally with:
-- Local language support
-- Region-specific cultural data
-- Community-managed knowledge base updates
-- Integration with local educational institutions
-
-## Data Sources
-
-### Primary Sources
-
-1. **UNESCO Archives**: Verified cultural heritage information from UNESCO's Intangible Cultural Heritage lists
-2. **Academic Institutions**: Research from African universities and cultural studies departments
-3. **Cultural Organizations**: Data from verified African cultural institutions and heritage organizations
-4. **Government Archives**: Official cultural records from African government cultural ministries
-5. **Community Documentation**: Verified information from community cultural organizations
-
-### Data Verification Process
-
-- All cultural data undergoes multi-source verification
-- Cross-referenced with academic publications and official archives
-- Reviewed by cultural experts and community representatives
-- Updated regularly to reflect new research and community feedback
-- Transparent attribution of all sources
-
-### Data Categories
-
-- **Festivals & Celebrations**: Dates, significance, cultural context, participation guidelines
-- **Art Forms & Crafts**: Techniques, materials, historical development, contemporary practice
-- **Traditions & Customs**: Social significance, ritual practices, cultural meaning
-- **Languages**: Linguistic features, cultural context, contemporary usage
-- **Proverbs & Wisdom**: Translations, cultural interpretations, contemporary relevance
-
-### Data Quality Assurance
-
-- Fact-checking against multiple authoritative sources
-- Regular updates to reflect current cultural practices
-- Community feedback integration for accuracy
-- Transparent documentation of data provenance
-- Clear distinction between historical and contemporary information
-
-## Misuse Risks & Mitigation
-
-### Potential Misuse Scenarios
-
-1. **Cultural Appropriation**: Unauthorized commercial use of cultural knowledge
-   - **Mitigation**: Clear licensing terms, attribution requirements, community benefit sharing
-
-2. **Stereotyping & Misrepresentation**: Oversimplification of complex cultural practices
-   - **Mitigation**: Comprehensive context, nuanced explanations, expert review
-
-3. **Sacred Knowledge Exposure**: Disclosure of restricted cultural information
-   - **Mitigation**: Community consultation, restricted access for sensitive content, cultural sensitivity guidelines
-
-4. **Misinformation Spread**: Unverified information presented as fact
-   - **Mitigation**: Rigorous source verification, transparent attribution, community fact-checking
-
-5. **Commercial Exploitation**: Profiting from cultural knowledge without community benefit
-   - **Mitigation**: Open-source model, community governance, benefit-sharing agreements
-
-6. **Data Privacy**: Personal information of cultural practitioners exposed
-   - **Mitigation**: Anonymization of personal data, privacy-first design, GDPR compliance
-
-### Safeguards Implemented
-
-- **Source Verification**: All data verified against multiple authoritative sources
-- **Community Review**: Cultural experts review all content for accuracy and sensitivity
-- **Transparent Attribution**: Clear documentation of all data sources
-- **Access Controls**: Ability to restrict sensitive cultural information
-- **Audit Logging**: Track all data access and modifications
-- **Community Governance**: Community representatives involved in content decisions
-- **Ethical Guidelines**: Clear code of conduct for platform users
-- **Regular Audits**: Periodic review of content for accuracy and appropriateness
-
-### Responsible Use Guidelines
-
-Users of KulturaMind commit to:
-
-1. **Respect Cultural Ownership**: Acknowledge that cultural knowledge belongs to communities
-2. **Proper Attribution**: Always credit sources and communities when sharing information
-3. **Contextual Understanding**: Present cultural information with full context and nuance
-4. **Community Benefit**: Ensure any commercial use benefits the originating communities
-5. **Sacred Knowledge**: Respect restrictions on sensitive or sacred cultural information
-6. **Accuracy**: Verify information before sharing and correct misinformation
-7. **Consent**: Obtain community consent before using cultural information commercially
-
-### Ongoing Monitoring
-
-- Regular community feedback collection
-- Monitoring for misuse and inappropriate content
-- Rapid response protocols for reported issues
-- Continuous improvement of safeguards
-- Collaboration with cultural organizations for oversight
-
-## Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Run tests and linting
-4. Submit a pull request
-
-## License
-
-This project is part of the BGI25 Hackathon initiative.
-
-## Support
-
-For issues, questions, or contributions, please open an issue on the repository.
+*Empowering communities through decentralized AGI*

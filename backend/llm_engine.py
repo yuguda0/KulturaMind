@@ -1,40 +1,48 @@
 """
-LLM Engine using ASI:One API
+LLM Engine using ASI Cloud Compute API
 Provides real AI-powered responses grounded in cultural knowledge
+Uses ASI Cloud infrastructure for BGI25 Hackathon
 """
 
 import os
 import json
 import logging
 from typing import List, Dict, Any, Optional
-import requests
+import openai
 from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
 load_dotenv()
 
 
-class ASIOneLLM:
+class ASICloudLLM:
     """
-    ASI:One LLM integration for intelligent cultural heritage responses
-    Uses real foundation models for reasoning and generation
+    ASI Cloud Compute LLM integration for intelligent cultural heritage responses
+    Uses ASI Cloud infrastructure with Qwen/Gemma models
     """
 
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
         """
-        Initialize ASI:One LLM
-        
+        Initialize ASI Cloud LLM
+
         Args:
-            api_key: ASI:One API key (defaults to ASI_API_KEY env var)
+            api_key: ASI Cloud API key (defaults to ASI_CLOUD_API_KEY env var)
+            model: Model to use (defaults to ASI_CLOUD_MODEL env var or qwen/qwen3-32b)
         """
-        self.api_key = api_key or os.getenv('ASI_API_KEY')
+        self.api_key = api_key or os.getenv('ASI_CLOUD_API_KEY')
         if not self.api_key:
-            raise ValueError("ASI_API_KEY not found in environment variables")
+            raise ValueError("ASI_CLOUD_API_KEY not found in environment variables")
 
-        self.base_url = "https://api.asi1.ai/v1"
-        self.model = "asi1-mini"  # Correct model name from ASI:One API
+        self.base_url = os.getenv('ASI_CLOUD_BASE_URL', 'https://inference.asicloud.cudos.org/v1')
+        self.model = model or os.getenv('ASI_CLOUD_MODEL', 'qwen/qwen3-32b')
 
-        logger.info("✓ ASI:One LLM initialized")
+        # Initialize OpenAI client with ASI Cloud endpoint
+        self.client = openai.OpenAI(
+            api_key=self.api_key,
+            base_url=self.base_url
+        )
+
+        logger.info(f"✓ ASI Cloud LLM initialized (model: {self.model})")
 
     def generate_response(
         self,
@@ -45,25 +53,25 @@ class ASIOneLLM:
         max_tokens: int = 800
     ) -> str:
         """
-        Generate response using ASI:One with RAG context
-        
+        Generate response using ASI Cloud with RAG context
+
         Args:
             query: User query
             context: Retrieved context documents
             system_prompt: Custom system prompt
             temperature: Response creativity (0-1)
             max_tokens: Maximum response length
-            
+
         Returns:
             Generated response
         """
         # Build context string
         context_str = self._format_context(context)
-        
+
         # Build system prompt
         if not system_prompt:
             system_prompt = self._get_default_system_prompt()
-        
+
         # Build messages
         messages = [
             {
@@ -75,33 +83,20 @@ class ASIOneLLM:
                 "content": f"Context:\n{context_str}\n\nQuestion: {query}"
             }
         ]
-        
+
         try:
-            # Call ASI:One API
-            response = requests.post(
-                f"{self.base_url}/chat/completions",
-                headers={
-                    "Authorization": f"Bearer {self.api_key}",
-                    "Content-Type": "application/json"
-                },
-                json={
-                    "model": self.model,
-                    "messages": messages,
-                    "temperature": temperature,
-                    "max_tokens": max_tokens
-                },
-                timeout=30
+            # Call ASI Cloud API using OpenAI client
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=temperature,
+                max_tokens=max_tokens
             )
-            
-            if response.status_code == 200:
-                result = response.json()
-                return result['choices'][0]['message']['content']
-            else:
-                logger.error(f"ASI:One API error: {response.status_code} - {response.text}")
-                return self._fallback_response(query, context)
-        
+
+            return response.choices[0].message.content
+
         except Exception as e:
-            logger.error(f"Error calling ASI:One API: {e}")
+            logger.error(f"Error calling ASI Cloud API: {e}")
             return self._fallback_response(query, context)
 
     def _format_context(self, context: List[Dict[str, Any]]) -> str:
@@ -217,37 +212,32 @@ Requirements:
                 "content": prompt
             }
         ]
-        
+
         try:
-            response = requests.post(
-                f"{self.base_url}/chat/completions",
-                headers={
-                    "Authorization": f"Bearer {self.api_key}",
-                    "Content-Type": "application/json"
-                },
-                json={
-                    "model": self.model,
-                    "messages": messages,
-                    "temperature": 0.7,
-                    "max_tokens": 200
-                },
-                timeout=30
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=0.7,
+                max_tokens=200
             )
-            
-            if response.status_code == 200:
-                return response.json()['choices'][0]['message']['content']
+
+            return response.choices[0].message.content
         except Exception as e:
             logger.error(f"Error generating summary: {e}")
-        
+
         return item.get('description', 'No summary available.')
+
+
+# Backward compatibility alias
+ASIOneLLM = ASICloudLLM
 
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    
+
     # Test LLM
-    llm = ASIOneLLM()
-    
+    llm = ASICloudLLM()
+
     # Test context
     context = [
         {
@@ -260,7 +250,7 @@ if __name__ == "__main__":
             }
         }
     ]
-    
+
     # Generate response
     response = llm.generate_response(
         "Tell me about Sango Festival",
